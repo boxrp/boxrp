@@ -30,8 +30,8 @@ const staticNavItems: Record<string, NavItem[]> = {
 };
 
 const FOL: NavItem[] = [
-    { id: "1", icon: "folder", label: "CRM", children: [ {id:"10", icon: "format_list_bulleted", label: "Active Jobs"} ] },
-    { id: "2", icon: "folder", label: "Jobs" },
+    { id: "1", icon: "folder", label: "CRM", children: [ {id:"10", icon: "format_list_bulleted", label: "System Gates"}, {id:"11", icon: "format_list_bulleted", label: "Custom Gates"}, {id:"12", icon: "format_list_bulleted", label: "Commercial Fencing & Panels"} ] },
+    { id: "2", icon: "folder", label: "Jobs", children: [ {id:"100", icon: "format_list_bulleted", label: "Active Jobs"} ] },
 ]
 
 

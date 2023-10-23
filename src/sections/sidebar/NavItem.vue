@@ -1,9 +1,7 @@
 <template>
-    <li class="py-1 pl-3 pr-2 flex gap-2 items-center cursor-pointer hover:bg-slate-100">
-        <div class="rounded-md">
-            <Icon :icon="item.icon || ''" />
-        </div>
-        <div class="flex-1 text-start">{{ item.label }}</div>
+    <li class="py-2 pl-3 pr-2 flex gap-2 items-center cursor-pointer hover:bg-slate-100">
+        <Icon :class="{'w-6 text-base text-right': size === 'small'}">{{ item.icon }}</Icon>
+        <div class="flex-1 text-start truncate">{{ item.label }}</div>
         <div class="text-xs text-slate-400 w-6 text-center">
             <slot></slot>
         </div>
@@ -16,5 +14,6 @@
 
     defineProps<{
         item: NavItem,
+        size?: "small" | "medium" | "large",
     }>()
 </script>
