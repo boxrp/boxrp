@@ -1,8 +1,8 @@
 <template>
     <main class="w-screen h-screen flex">
-        <Nav />
+        <Sidebar />
         <section class="flex-1 flex flex-col">
-            <header class="h-16 border-b border-zinc-200 text-black flex items-center p-2">
+            <header class="h-16 border-b border-border text-black flex items-center p-2">
                 <div>Head</div>
             </header>
         </section>
@@ -10,9 +10,7 @@
 </template>
 
 <script setup lang="ts">
-    import Nav from "./nav/Nav.vue";
+    import Sidebar from "./sidebar/Sidebar.vue";
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>
