@@ -6,12 +6,28 @@ export default {
             colors: {
                 primary: "#3966F8",
                 secondary: "#2a2e34",
-                outline: "#E4E4E7" // zinc-200
+                outline: "#E4E4E7", // zinc-200
+                logo: "#111111",
+                "boxrp": {
+                    '50': '#eff4ff',
+                    '100': '#dbe5fe',
+                    '200': '#bed2ff',
+                    '300': '#92b5fe',
+                    '400': '#5e8efc',
+                    '500': '#3966f8',
+                    '600': '#2345ed',
+                    '700': '#1b31da',
+                    '800': '#1c2ab1',
+                    '900': '#1d298b',
+                    '950': '#161c55',
+                },
+                
             }
         },
     },
     plugins: [
-        require('@headlessui/tailwindcss')
+        require('@headlessui/tailwindcss'),
+        require('@tailwindcss/forms'),
     ],
 }
 
