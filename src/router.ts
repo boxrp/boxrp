@@ -1,17 +1,19 @@
-// // src/router/index.js
-// import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 
-// const routes = [
-//     {
-//         path: "/",
-//         name: "AllBreweries",
-//         component: AllBreweries,
-//     },
-// ]
+import Auth from "@sections/auth/Auth.vue";
+import Layout from "@sections/Layout.vue";
+import Table from "@sections/table/Table.vue";
 
-// const router = createRouter({
-//   history: createWebHistory(),
-//   routes
-// })
+const routes = [
+    { path: "/", name: "auth", component: Auth },
+    { path: "/app", component: Layout, children: [
+        { path: "table/:id", name: "table", component: Table }
+    ]},
+]
 
-// export default router
+const router = createRouter({
+    history: createWebHistory(),
+    routes
+});
+
+export default router

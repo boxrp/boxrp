@@ -29,6 +29,4 @@
     import { staticNavItems, useSidebarStore } from "@stores/Sidebar";
 
     const store = useSidebarStore();
-
-
 </script>
