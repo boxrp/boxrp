@@ -8,7 +8,7 @@
         </header>
         <div class="flex-1">
             <ul class="py-4 text-slate-500 text-sm font-medium border-b">
-                <NavItem v-for="item in staticNavItems.top" :item="item">14</NavItem>
+                <NavItem v-for="item in staticNavItems.top" :item="item">99+</NavItem>
             </ul>
             <div>
                 <ul class="py-4 text-slate-500 text-sm font-medium">

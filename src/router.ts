@@ -1,17 +1,17 @@
-// src/router/index.js
-import { createRouter, createWebHistory } from 'vue-router';
+// // src/router/index.js
+// import { createRouter, createWebHistory } from 'vue-router';
 
-const routes = [
-    {
-        path: "/",
-        name: "AllBreweries",
-        component: AllBreweries,
-    },
-]
+// const routes = [
+//     {
+//         path: "/",
+//         name: "AllBreweries",
+//         component: AllBreweries,
+//     },
+// ]
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes
-})
+// const router = createRouter({
+//   history: createWebHistory(),
+//   routes
+// })
 
-export default router
+// export default router

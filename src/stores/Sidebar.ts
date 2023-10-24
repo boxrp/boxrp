@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ref, computed } from "vue";
+import { ref } from "vue";
 
 const useSidebarStore = defineStore("sidebar", () => {
     const folders = ref(FOL);
@@ -30,8 +30,9 @@ const staticNavItems: Record<string, NavItem[]> = {
 };
 
 const FOL: NavItem[] = [
-    { id: "1", icon: "folder", label: "CRM", children: [ {id:"10", icon: "format_list_bulleted", label: "System Gates"}, {id:"11", icon: "format_list_bulleted", label: "Custom Gates"}, {id:"12", icon: "format_list_bulleted", label: "Commercial Fencing & Panels"} ] },
+    { id: "1", icon: "location_away", label: "CRM", children: [ {id:"10", icon: "format_list_bulleted", label: "System Gates"}, {id:"11", icon: "format_list_bulleted", label: "Custom Gates"}, {id:"12", icon: "format_list_bulleted", label: "Commercial Fencing & Panels"} ] },
     { id: "2", icon: "folder", label: "Jobs", children: [ {id:"100", icon: "format_list_bulleted", label: "Active Jobs"} ] },
+    { id: "3", icon: "account_balance", label: "Accounting", children: [ {id:"10", icon: "format_list_bulleted", label: "Contacts"}, {id:"10", icon: "format_list_bulleted", label: "Invoices"}, {id:"11", icon: "format_list_bulleted", label: "Bills"}, {id:"12", icon: "format_list_bulleted", label: "Purchase Orders"} ] },
 ]
 
 

@@ -7,11 +7,13 @@
         "dev": "vite",
         "build": "vue-tsc && vite build",
         "preview": "vite preview",
-        "prettier": "prettier -w -u src/**/*"
+        "prettier": "prettier -w -u src/**/*",
+        "emulators": "firebase emulators:start"
     },
     "dependencies": {
         "@headlessui/tailwindcss": "^0.2.0",
         "@headlessui/vue": "^1.7.16",
+        "firebase": "^10.5.0",
         "pinia": "^2.1.7",
         "prettier": "^3.0.3",
         "sass": "^1.69.4",
