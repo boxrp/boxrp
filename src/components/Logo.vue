@@ -12,8 +12,8 @@
 </template>
 
 <script setup lang="ts">
-    import LogoMark from '@assets/logo-mark.svg';
-    import LogoText from '@assets/logo-text.svg';
+    import LogoMark from "@assets/logo-mark.svg";
+    import LogoText from "@assets/logo-text.svg";
 
     defineProps<{
         size?: "small";

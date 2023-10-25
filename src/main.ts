@@ -1,14 +1,15 @@
 import { createApp } from 'vue'
-import { createPinia } from 'pinia';
 import router from './router';
 import App from './App.vue'
-import { auth, app as fb } from '@stores/firebase';
+import { app as fb } from '@store/firebase';
+import { VueFire, VueFireAuth } from 'vuefire';
 import './index.scss'
 
-const pinia = createPinia()
 const app = createApp(App);
-app.use(pinia);
+
 app.use(router);
+app.use(VueFire, { firebaseApp: fb, modules: [ VueFireAuth() ] });
+
 app.mount('#app')
 
-console.log("Initialized Firebase", fb.name, auth.name);
+console.log("Initialized Firebase", fb.name);

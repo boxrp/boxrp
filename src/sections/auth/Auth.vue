@@ -1,5 +1,6 @@
 <template>
-    <main class="w-screen h-screen flex items-center justify-center bg-zinc-50">
+    <main class="w-screen h-screen flex flex-col items-center bg-zinc-50">
+        <div class="h-1/6"></div>
         <div class="border rounded-lg shadow-md p-9 flex flex-col items-center gap-4 w-96 bg-white">
             <Logo />
             <div id="auth"></div>
@@ -8,15 +9,15 @@
 </template>
 
 <script setup lang="ts">
-    import { onMounted } from 'vue';
-    import * as firebaseui from 'firebaseui'
-    import { auth, uiConfig } from '@stores/firebase';
-    import Logo from '@components/Logo.vue';
+    import { onMounted } from "vue";
+    import * as firebaseui from "firebaseui";
+    import { auth, uiConfig } from "@store/firebase";
+    import Logo from "@components/Logo.vue";
 
     onMounted(() => {
-        console.log("Starting")
+        console.log("Starting");
         const ui = new firebaseui.auth.AuthUI(auth);
-        ui.start('#auth', uiConfig);
+        ui.start("#auth", uiConfig);
     });
 </script>
 
@@ -27,10 +28,12 @@
     .firebaseui-title {
         @apply text-lg #{!important};
     }
-    #ui-sign-in-email-input, #ui-sign-in-password-input {
+    #ui-sign-in-email-input,
+    #ui-sign-in-password-input {
         @apply my-2 w-full rounded-md border border-gray-300 shadow-sm #{!important};
     }
-    .firebaseui-card-actions, .firebaseui-form-actions {
+    .firebaseui-card-actions,
+    .firebaseui-form-actions {
         @apply flex flex-col gap-4 #{!important};
     }
     .firebaseui-button {
@@ -43,7 +46,7 @@
         @apply text-red-500 text-xs #{!important};
     }
     // Terms etc
-    .firebaseui-tos-list  {
+    .firebaseui-tos-list {
         @apply flex gap-2 #{!important};
     }
     .firebaseui-textfield {

@@ -1,0 +1,10 @@
+{
+    "top": [
+        { "id": "home", "icon": "home", "label": "Home" },
+        { "id": "tasks", "icon": "task_alt", "label": "Tasks" }
+    ],
+    "bottom": [
+        { "id": "settings", "icon": "settings", "label": "Settings" },
+        { "id": "logout", "icon": "logout", "label": "Logout" }
+    ]
+}

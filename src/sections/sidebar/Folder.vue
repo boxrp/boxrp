@@ -1,5 +1,5 @@
 <template>
-    <li class="flex flex-col gap-2 justify-center cursor-pointer">
+    <li class="flex flex-col justify-center cursor-pointer">
         <Disclosure v-slot="{ open }">
             <DisclosureButton class="hover:bg-slate-100">
                 <NavItem :item="item">
@@ -16,9 +16,10 @@
 <script setup lang="ts">
     import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
     import NavItem from "./NavItem.vue";
-    import { NavItem as NaveItemType } from "@stores/Sidebar";
+    import { NavItem as NaveItemType } from "@store/Sidebar";
 
     defineProps<{
-        item: NaveItemType;
+        uid: string;
     }>();
 </script>
+@stores/sidebar

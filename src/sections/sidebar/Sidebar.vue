@@ -5,16 +5,14 @@
         </header>
         <div class="flex-1">
             <ul class="py-4 text-slate-500 text-sm font-medium border-b">
-                <NavItem v-for="item in staticNavItems.top" :item="item">99+</NavItem>
+                <NavItem v-for="item in items.top" :item="item" icon="folder">99+</NavItem>
             </ul>
             <div>
-                <ul class="py-4 text-slate-500 text-sm font-medium">
-                    <Folder v-for="item in store.folders" :item="item" />
-                </ul>
+                <Folders />
             </div>
         </div>
         <ul class="py-4 text-slate-500 text-sm font-medium border-t">
-            <NavItem v-for="item in staticNavItems.bottom" :item="item" />
+            <NavItem v-for="item in items.bottom" :item="item" icon="folder" />
         </ul>
     </nav>
 </template>
@@ -22,8 +20,6 @@
 <script setup lang="ts">
     import Logo from "@components/Logo.vue";
     import NavItem from "./NavItem.vue";
-    import Folder from "./Folder.vue";
-    import { staticNavItems, useSidebarStore } from "@stores/Sidebar";
-
-    const store = useSidebarStore();
+    import Folders from "./Folders.vue";
+    import items from "./items.json";
 </script>
