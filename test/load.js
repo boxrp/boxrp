@@ -3,14 +3,21 @@ import { doc, setDoc, collection, addDoc } from "firebase/firestore";
 
 console.log("Connected to Firebase");
 
+const uid = "q8JJV5WzR4rNdJxjGuqFVhHDWTpU";
+const views = [{label: "System Gates"}, {label: "Custom Gates"}, {label: "Commercial Panels & Fencing"}];
+const folders = [{label: "Accounting"}, {label: "CRM"}, {label: "Jobs"}]
+
+// Views
+const vc = collection(db, 'views');
+for (const view of views) {
+    view["uid"] = uid;
+    let ref = await addDoc(vc, view);
+    view["id"] = ref.id;
+    console.log(ref.id);
+}
+// Folders
+folders[1]["views"] = views;
 const fc = collection(db, 'folders');
-
-const uid = "WHMbuKa1gMN3rHWwApglte6aB4B7";
-const folders = [
-    {label: "Accounting"}, 
-    {label: "CRM", views: [{label: "System Gates"}, {label: "Custom Gates"}, {label: "Commercial Panels & Fencing"}]}, 
-    {label: "Jobs"}]
-
 for (const folder of folders) {
     folder["uid"] = uid;
     let ref = await addDoc(fc, folder);

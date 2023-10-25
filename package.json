@@ -9,7 +9,7 @@
         "build": "vue-tsc && vite build",
         "preview": "vite preview",
         "prettier": "prettier -w -u src/**/*",
-        "emulators": "firebase emulators:start"
+        "emulators": "firebase emulators:start --export-on-exit=./test/emulator --import=./test/emulator"
     },
     "dependencies": {
         "@headlessui/tailwindcss": "^0.2.0",
