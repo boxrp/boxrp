@@ -4,6 +4,7 @@
         { "id": "tasks", "icon": "task_alt", "label": "Tasks" }
     ],
     "bottom": [
+        { "id": "folder", "icon": "folder", "label": "Edit Folders & Lists" },
         { "id": "settings", "icon": "settings", "label": "Settings" },
         { "id": "logout", "icon": "logout", "label": "Logout" }
     ]

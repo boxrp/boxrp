@@ -19,7 +19,6 @@ function getFolders(uid: string) {
         const folders: Folder[] = [];
         snapshot.forEach((doc) => {
             const data = { id: doc.id, ...doc.data() };
-            console.log(data);
             folders.push(data as any as Folder);
         });
         $folders.set(folders);

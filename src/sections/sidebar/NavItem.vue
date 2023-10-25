@@ -1,7 +1,7 @@
 <template>
-    <li class="py-2 pl-3 pr-2 flex gap-2 items-center cursor-pointer hover:bg-slate-100">
+    <li class="py-2 pl-3 pr-2 flex gap-2 items-center cursor-pointer" :class="{'hover:bg-slate-100': !active, 'bg-indigo-100 text-indigo-700': active}">
         <div class="rounded-md flex justify-center">
-            <Icon :class="{ 'w-6 text-base text-right': size === 'small' }">{{ item.icon || icon }}</Icon>
+            <Icon :class="{ 'w-6 text-base text-right': small }">{{ item.icon || icon || 'folder' }}</Icon>
         </div>
         <div class="flex-1 text-start truncate">{{ item.label }}</div>
         <div class="text-xs text-slate-400 w-6 text-center">
@@ -16,8 +16,9 @@
 
     defineProps<{
         item: NavItem;
-        size?: "small";
-        icon: string;
+        small?: boolean;
+        active: boolean;
+        icon?: string;
     }>();
 </script>
 @stores/sidebar
