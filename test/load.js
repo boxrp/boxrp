@@ -4,29 +4,28 @@ import { doc, setDoc, collection, addDoc } from "firebase/firestore";
 console.log("Connected to Firebase");
 
 const uid = "q8JJV5WzR4rNdJxjGuqFVhHDWTpU";
-const views = [{label: "System Gates"}, {label: "Custom Gates"}, {label: "Commercial Panels & Fencing"}];
-const folders = [{label: "Accounting"}, {label: "CRM"}, {label: "Jobs"}]
+const folders = [
+    {label: "CRM", order: 2, lists: [{label: "Contacts", icon: "person"}, {label: "System Gates", icon: "filter_list"}, {label: "Custom Gates", icon: "filter_list"}, {label: "Commercial Panels & Fencing", icon: "filter_list"}]}, 
+    {label: "Jobs", order: 1, lists: [{label: "Quotes"}, {label: "Active Jobs"}]},
+    {label: "Accounting", order: 3, lists: [{label: "Invoices", icon: "draft"}, {label: "Purchase Orders", icon: "draft"}]}, 
+]
 
-// Views
-const vc = collection(db, 'views');
-for (const view of views) {
-    view["uid"] = uid;
-    let ref = await addDoc(vc, view);
-    view["id"] = ref.id;
-    console.log(ref.id);
-}
 // Folders
-folders[1]["views"] = views;
-const fc = collection(db, 'folders');
+const fcol = collection(db, 'folders');
+const vcol = collection(db, 'lists');
+
 for (const folder of folders) {
+    for (const view of folder.lists) {
+        view["uid"] = uid;
+        let ref = await addDoc(vcol, view);
+        view["id"] = ref.id;
+    }
+
     folder["uid"] = uid;
-    let ref = await addDoc(fc, folder);
-    // const vc = collection(ref, 'views');
-    // for (const list of views[folder.label] || []) {
-    //     list["uid"] = uid;
-    //     await addDoc(vc, list);
-    // }
-    console.log(ref.id);
+    let ref = await addDoc(fcol, folder);
 }
+
+console.log("done");
+
 
 // https://github.com/oven-sh/bun/issues/887

@@ -1,5 +1,5 @@
 import { atom } from "nanostores";
-import { collection as col, query, where, onSnapshot } from "firebase/firestore";
+import { collection as col, query, where, onSnapshot, orderBy } from "firebase/firestore";
 import { db } from "@store/firebase";
 import { $uid } from "./user";
 
@@ -13,7 +13,7 @@ $uid.listen((uid) => {
 });
 
 function getFolders(uid: string) {
-    const qry = query(col(db, "folders"), where("uid", "==", uid));
+    const qry = query(col(db, "folders"), where("uid", "==", uid), orderBy("order"));
     // Listen for updates
     onSnapshot(qry, (snapshot) => {
         const folders: Folder[] = [];
@@ -29,7 +29,7 @@ interface Folder {
     id: string;
     label: string;
     icon?: string;
-    views: {
+    lists: {
         id: string;
         label: string;
         status?: number;

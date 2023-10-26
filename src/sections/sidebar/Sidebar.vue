@@ -7,7 +7,7 @@
         <ul class="py-4 text-slate-500 text-sm font-medium border-b">
             <NavItem v-for="item in items.top" :item="item" :active="active === item.id" @click="showView(item.id, item.label)">99+</NavItem>
         </ul>
-        <div class="flex-1">
+        <div class="flex-1 overflow-y-auto">
             <!-- Folders -->
             <ul class="py-4 text-slate-500 text-sm font-medium">
                 <li v-for="folder in folders" class="flex flex-col justify-center cursor-pointer">
@@ -18,7 +18,7 @@
                             </NavItem>
                         </DisclosureButton>
                         <DisclosurePanel class="text-gray-500">
-                            <NavItem v-for="view in folder.views" :item="view" :small="true" :active="active === view.id" icon="format_list_bulleted" @click="showView(view.id, view.label, 'grid')"></NavItem>
+                            <NavItem v-for="view in folder.lists" :item="view" :small="true" :active="active === view.id" icon="format_list_bulleted" @click="showView(view.id, view.label, 'grid')"></NavItem>
                         </DisclosurePanel>
                     </Disclosure>
                 </li>
@@ -39,7 +39,7 @@
     import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
     import { useStore } from '@nanostores/vue'
     import { $folders } from "@store/folder";
-    import { getView } from "@store/view";
+    import { getList } from "@store/list";
     import items from "./items.json";
 
     const folders = useStore($folders);
@@ -50,6 +50,8 @@
         active.value = id;
         const path = view ? `/view/${id}/${view}` : `/view/${id}`;
         router.push(path);
-        getView(id, label);
+        getList(id, label);
     }
 </script>
+
+<!-- https://perfectscrollbar.com/ -->

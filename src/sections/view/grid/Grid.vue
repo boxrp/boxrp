@@ -1,10 +1,10 @@
 <template>
     <View>
         <template #header>
-            <Header :label="label" class="px-4" />
+            <Header :label="label" :icon="list?.icon" class="px-4" />
         </template>
         <div class="p-6">
-            {{ id }} {{ view }}
+            {{ id }} {{ list }}
         </div>
     </View>
 </template>
@@ -13,15 +13,16 @@
     import View from "../View.vue";
     import Header from "../Header.vue";
     import { useRoute } from 'vue-router'
-    import { $view, $label, getView } from "@store/view";
+    import { $list, $label } from "@store/list";
     import { useStore } from '@nanostores/vue'
 
     const route = useRoute()
     const id = route.params.id;
+    const list = useStore($list);
     const label = useStore($label);
-    const view = useStore($view);
 
 
 
 
 </script>
+@store/list
