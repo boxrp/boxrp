@@ -1,7 +1,8 @@
 {
     "top": [
         { "id": "home", "icon": "home", "label": "Home" },
-        { "id": "tasks", "icon": "task_alt", "label": "Tasks" }
+        { "id": "tasks", "icon": "task_alt", "label": "Tasks" },
+        { "id": "inbox", "icon": "all_inbox", "label": "Group Inbox" }
     ],
     "bottom": [
         { "id": "folders", "icon": "bookmark_manager", "label": "Edit Folders & Lists" },

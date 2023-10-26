@@ -5,7 +5,7 @@
         </header>
         <!-- Header -->
         <ul class="py-4 text-slate-500 text-sm font-medium border-b">
-            <NavItem v-for="item in items.top" :item="item" :active="active === item.id" @click="showView(item.id, item.label)">99+</NavItem>
+            <NavItem v-for="item in items.top" :item="item" :active="active === item.id" @click="showList(item.id, item.label)">99+</NavItem>
         </ul>
         <div class="flex-1 overflow-y-auto">
             <!-- Folders -->
@@ -18,7 +18,7 @@
                             </NavItem>
                         </DisclosureButton>
                         <DisclosurePanel class="text-gray-500">
-                            <NavItem v-for="view in folder.lists" :item="view" :small="true" :active="active === view.id" icon="format_list_bulleted" @click="showView(view.id, view.label, 'grid')"></NavItem>
+                            <NavItem v-for="view in folder.lists" :item="view" :small="true" :active="active === view.id" icon="format_list_bulleted" @click="showList(view.id, view.label, 'grid')"></NavItem>
                         </DisclosurePanel>
                     </Disclosure>
                 </li>
@@ -46,9 +46,9 @@
     const router = useRouter();
     const active = ref("home");
 
-    function showView(id: string, label: string, view?: string) {
+    function showList(id: string, label: string, view?: string) {
         active.value = id;
-        const path = view ? `/view/${id}/${view}` : `/view/${id}`;
+        const path = view ? `/list/${id}/${view}` : `/list/${id}`;
         router.push(path);
         getList(id, label);
     }

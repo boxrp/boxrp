@@ -12,4 +12,3 @@ app.use(VueFire, { firebaseApp: fb, modules: [ VueFireAuth() ] });
 
 app.mount('#app')
 
-console.log("Initialized Firebase", fb.name);

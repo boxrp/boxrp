@@ -1,5 +1,5 @@
 import { atom } from "nanostores";
-import { collection as col, query, where, onSnapshot, orderBy } from "firebase/firestore";
+import { collection, query, where, orderBy, getDocs } from "firebase/firestore";
 import { db } from "@store/firebase";
 import { $uid } from "./user";
 
@@ -12,17 +12,26 @@ $uid.listen((uid) => {
     }
 });
 
-function getFolders(uid: string) {
-    const qry = query(col(db, "folders"), where("uid", "==", uid), orderBy("order"));
-    // Listen for updates
-    onSnapshot(qry, (snapshot) => {
-        const folders: Folder[] = [];
-        snapshot.forEach((doc) => {
-            const data = { id: doc.id, ...doc.data() };
-            folders.push(data as any as Folder);
-        });
-        $folders.set(folders);
+const foldersRef = collection(db, "folders");
+const listsRef = collection(db, "lists");
+
+async function getFolders(uid: string) {
+    const folders: Record<string, Folder> = {};
+    // Get the folders
+    let qry = query(foldersRef, where("uid", "==", uid), orderBy("order"));
+    let snapshot = await getDocs(qry);
+    snapshot.forEach((doc) => {
+        folders[doc.id] = { id: doc.id, lists: [], ...doc.data() } as any as Folder;
     });
+    // Get the lists
+    qry = query(listsRef, where("folder", "in", Object.keys(folders)));
+    snapshot = await getDocs(qry);
+    snapshot.forEach((doc) => {
+        const { folder, label, icon } = doc.data();
+        folders[folder].lists.push({id: doc.id, label, icon })
+    });
+    $folders.set(Object.values(folders));
+
 }
 
 interface Folder {
@@ -32,6 +41,7 @@ interface Folder {
     lists: {
         id: string;
         label: string;
+        icon?: string;
         status?: number;
     }[];
 }
