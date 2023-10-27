@@ -1,6 +1,7 @@
 <template>
     <div>
         HOME
+        <a href="/list/N0jKy2hfglr5DW5SCnfO/grid">GRID</a>
     </div>
 </template>
 

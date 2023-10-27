@@ -26,7 +26,7 @@
         </div>
         <!-- Footer -->
         <ul class="py-4 text-slate-500 text-sm font-medium border-t">
-            <NavItem v-for="item in items.bottom" :item="item" :active="active === item.id" />
+            <NavItem v-for="item in items.bottom" :item="item" :active="active === item.id" @click="onBottomItemClick(item.id)" />
         </ul>
     </nav>
 </template>
@@ -34,6 +34,7 @@
 <script setup lang="ts">
     import { ref } from "vue";
     import { useRouter } from "vue-router";
+    import { auth } from "@store/firebase";
     import Logo from "@components/Logo.vue";
     import NavItem from "./NavItem.vue";
     import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
@@ -52,6 +53,13 @@
         router.push(path);
         getList(id, label);
     }
+
+    function onBottomItemClick(id: string) {
+        console.log(id);
+        auth.signOut();    
+        router.push({ name: "auth" });
+    }    
+
 </script>
 
 <!-- https://perfectscrollbar.com/ -->
