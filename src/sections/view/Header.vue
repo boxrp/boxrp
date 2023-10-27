@@ -12,22 +12,21 @@
 </template>
 
 <script setup lang="ts">
-    import { ref, computed } from "vue";
+    import { computed } from "vue";
     import Icon from "@components/Icon.vue";
     import Button from "@components/Button.vue";
-    import { useRouter } from "vue-router";
+    import { useRouter, useRoute } from "vue-router";
 
     defineProps<{
         label: string | undefined;
         icon: string | undefined;
     }>();    
 
+    const route = useRoute();
     const router = useRouter();
     const tabs = [{id: "grid", icon: "table_rows_narrow"}, {id: "board", icon: "view_kanban"}, {id: "calendar", icon: "calendar_month"}, {id: "timeline", icon: "view_timeline"}];
-    const active = computed(() => router.currentRoute.value.meta?.view);
+    const active = computed(() => route.params.view || "grid");
     
-    ref(router.currentRoute.value.meta.view);
-
     function changeView(view: string) {
         const path = `/list/${router.currentRoute.value.params.id}/${view}`;
         router.push(path);

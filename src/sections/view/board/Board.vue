@@ -1,14 +1,17 @@
 <template>
-    <View>
-        <template #header>
-            <div class="text-lg">System Gates</div>
-        </template>
-        <div>
-            BODY
-        </div>
-    </View>
+    BOARD
 </template>
 
 <script setup lang="ts">
-    import View from "@sections/View.vue";
+    import { $list, List } from "@store/list";
+    import { useStore } from '@nanostores/vue'
+
+    const list = useStore($list);
+
+
+    // defineProps<{
+    //     list: List;
+    // }>();     
+
+
 </script>

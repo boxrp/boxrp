@@ -42,7 +42,7 @@ interface Option {
 }
 
 
-export { $list, $label, getList };
+export { $list, $label, getList, type List, type Field };
 
 
 
