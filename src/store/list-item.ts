@@ -2,33 +2,24 @@ import { atom } from "nanostores";
 import { collection, query, onSnapshot, Unsubscribe } from "firebase/firestore";
 import { db } from "@store/firebase";
 
-const $items = atom<ListItem[]>([]);
+const $items = atom<Record<string, any>[]>([]);
 let unsubscribe: Unsubscribe | undefined;
 
-function getListItems(id: string) {
+async function getListItems(listId: string) {
     // Unsubscribe from any previous list
     if (unsubscribe) {
         unsubscribe();
     }
-    const itemsRef = collection(db, "lists", id, "list-items");
+    const itemsRef = collection(db, "lists", listId, "list-items");
     const q = query(itemsRef);
     unsubscribe = onSnapshot(q, (snapshot) => {
-        const items: ListItem[] = [];
+        const items: Record<string, any>[] = [];
         snapshot.forEach((doc) => {
             const data = doc.data();
-            items.push({
-                id: doc.id,
-                fields: data.fields
-            });
+            items.push({id: doc.id, ...data });
         });
         $items.set(items);
-        console.log("Items update", id);
     });
-}
-
-interface ListItem {
-    id: string;
-    fields: Record<string, any>
 }
 
 export { $items, getListItems };

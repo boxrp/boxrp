@@ -1,12 +1,19 @@
-import { Field } from "@store/list";
+import { Field, List } from "@store/list";
 
-function columns(schema: Field[]) {
-    const columns = [];
-    for (const field of schema) {
-        columns.push(fields[field.type] || MIN);
+function columns(list: List): Column[] {
+    const columns: Column[] = [];
+    for (const field of list.schema) {
+        columns.push({
+            ...field,
+            width: fields[field.type]
+        
+        });
     }
-    console.log(columns);
-    return columns.join(" ");
+    return columns;
+}
+
+interface Column extends Field {
+    width: string;
 }
 
 const MIN = "80px";
@@ -43,4 +50,4 @@ const fields = {
     "formula": STANDARD
 };
 
-export { columns };
+export { columns, type Column };

@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import router from './router';
+import { router } from './router';
 import App from './App.vue'
 import { app as fb } from '@store/firebase';
 import { VueFire, VueFireAuth } from 'vuefire';

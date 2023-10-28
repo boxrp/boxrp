@@ -1,12 +1,19 @@
 import { atom } from "nanostores";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@store/firebase";
+import { subscribe } from "./subscribe";
+import { getListItems } from "./list-item";
 
 const $list = atom<List | undefined>(undefined);
-const $label = atom<string>("");
 
-async function getList(id: string, label: string) {
-    $label.set(label);
+// Trigger getList when a list route changes
+subscribe("list", (params) => {
+    getList(params.id);
+    getListItems(params.id);
+});
+
+// Get a list from Firestore
+async function getList(id: string) {
     const list = await getDoc(doc(db, "lists", id));
     $list.set({ id: list.id, ...list.data() } as any as List);
 }
@@ -42,7 +49,7 @@ interface Option {
 }
 
 
-export { $list, $label, getList, type List, type Field };
+export { $list, getList, type List, type Field };
 
 
 

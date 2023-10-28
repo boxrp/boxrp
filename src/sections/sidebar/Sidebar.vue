@@ -1,7 +1,10 @@
 <template>
     <nav class="w-64 bg-zinc-50 flex flex-col border-r">
-        <header class="h-16 flex items-center pl-4 border-b">
+        <header class="h-16 flex items-center px-3 border-b">
             <Logo size="small" />
+            <div class="flex justify-end w-full">
+                <Icon class="text-slate-400">left_panel_close</Icon>
+            </div>
         </header>
         <!-- Header -->
         <ul class="py-4 text-slate-500 text-sm font-medium border-b">
@@ -37,6 +40,7 @@
     import { auth } from "@store/firebase";
     import Logo from "@components/Logo.vue";
     import NavItem from "./NavItem.vue";
+    import Icon from "@components/Icon.vue";
     import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
     import { useStore } from '@nanostores/vue'
     import { $folders } from "@store/folder";
