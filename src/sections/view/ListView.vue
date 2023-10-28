@@ -1,6 +1,22 @@
 <template>
-    <header class="h-16 border-b border-border text-black flex items-center p-2">
+    <header class="">
         <Header :label="list?.label" :icon="list?.icon" class="px-4" />
+        <div class="mx-4 border-b flex">
+            <div>
+                <TabBar class="" />
+            </div>
+            <div class="flex-1 flex gap-2 items-center justify-end pr-4">
+                <div class="icon">upgrade</div>
+                <div class="icon rotate-180">upgrade</div>
+                <div class="icon">delete</div>
+                <div>
+                    <div class="py-1 button-medium">
+                        <figure class="icon">add</figure>
+                        Add Job
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
     <main>
         <component :is="view"></component>
@@ -13,6 +29,7 @@
     import { $list } from "@store/list";
     import { useStore } from '@nanostores/vue'
     import Header from "./Header.vue";
+    import TabBar from "./TabBar.vue";
     import Grid from "./grid/Grid.vue";
     import Board from "./board/Board.vue";
 
