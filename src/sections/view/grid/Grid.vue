@@ -17,7 +17,7 @@
     const list = useStore($list);
     const items = useStore($items);
     const cols = computed(() => list.value ? columns(list.value as List) : []);
-    const widths = computed(() => "40px " + cols.value.map(col => col.width).join(' '));
+    const widths = computed(() => "32px " + cols.value.map(col => col.width).join(' '));
 
 
 

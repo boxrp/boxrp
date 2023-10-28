@@ -1,26 +1,30 @@
 <template>
-    <header class="">
-        <Header :label="list?.label" :icon="list?.icon" class="px-4" />
-        <div class="mx-4 border-b flex">
-            <div>
-                <TabBar class="" />
-            </div>
-            <div class="flex-1 flex gap-2 items-center justify-end pr-4">
-                <div class="icon">upgrade</div>
-                <div class="icon rotate-180">upgrade</div>
-                <div class="icon">delete</div>
+    <div>
+        <header class="">
+            <Header :label="list?.label" :icon="list?.icon" class="px-4" />
+            <div class="mx-4 border-b flex">
                 <div>
-                    <div class="py-1 button-medium">
-                        <figure class="icon">add</figure>
-                        Add Job
+                    <TabBar class="" />
+                </div>
+
+                <div class="flex-1 flex gap-1 items-center justify-end pr-4">
+                    <div class="icon-button">upgrade</div>
+                    <div class="icon-button rotate-180">upgrade</div>
+                    <div class="icon-button">delete</div>
+                    <div>
+                        <div class="py-1 ml-1 button">
+                            <figure class="icon">add</figure>
+                            Add Job
+                        </div>
                     </div>
                 </div>
+
             </div>
-        </div>
-    </header>
-    <main>
-        <component :is="view"></component>
-    </main>
+        </header>
+        <main>
+            <component :is="view"></component>
+        </main>
+    </div>
 </template>
 
 <script setup lang="ts">

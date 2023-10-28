@@ -1,6 +1,6 @@
 <template>
     <header class="grid text-sm border-b border-t border-l border-darker bg-amber-50 font-medium text-slate-800" :style="{ 'grid-template-columns': layout }">
-        <div>+</div>
+        <div></div>
         <div v-for="column in columns">{{ column.label }}</div>
     </header>
 </template>

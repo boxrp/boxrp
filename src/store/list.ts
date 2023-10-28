@@ -39,15 +39,8 @@ interface Field {
     max?: number;
     min?: number;
     relationship?: string;
-    options?: Option[];
+    options?: Record<string, string | { label: string, color?: string}>;
 }
-
-interface Option {
-    id: string;
-    label: string;
-    color?: string;
-}
-
 
 export { $list, getList, type List, type Field };
 

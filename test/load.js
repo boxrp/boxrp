@@ -32,7 +32,7 @@ const list = {
         {id: "C", label: "Start Date", type: "start"},
         {id: "D", label: "Finish", type: "due"},
         {id: "E", label: "Who", type: "accounts", max: 1},
-        {id: "F", label: "Status", type: "status"},
+        {id: "F", label: "Status", type: "status", options: { "P": { label: "Pending", color: "#d6d3d1" }, "I": { label: "In Progress", color: "#dbeafe" }, "C": { label: "Completed", color: "#dcfce7" }}},
         {id: "G", label: "Materials", type: "boolean"},
         {id: "H", label: "Drawings", type: "boolean"},
     ],
@@ -53,7 +53,7 @@ const items = [
       C: 1700006400,
       D: 1707264000,
       E: "John Doe",
-      F: "In Progress",
+      F: "I",
       G: true,
       H: false
     },
@@ -63,7 +63,7 @@ const items = [
       C: 1700611200,
       D: 1707868800,
       E: "Jane Doe",
-      F: "Pending",
+      F: "P",
       G: false,
       H: false
     },
@@ -73,7 +73,7 @@ const items = [
       C: 1701216000,
       D: 1708473600,
       E: "Peter Smith",
-      F: "Completed",
+      F: "C",
       G: false,
       H: false
     },
@@ -83,7 +83,7 @@ const items = [
       C: 1701820800,
       D: 1709078400,
       E: "Mary Jones",
-      F: "In Progress",
+      F: "I",
       G: true,
       H: true
     },
@@ -93,7 +93,7 @@ const items = [
       C: 1702425600,
       D: 1709683200,
       E: "Susan Brown",
-      F: "Pending",
+      F: "P",
       G: true,
       H: true
     }

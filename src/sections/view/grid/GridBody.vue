@@ -1,24 +1,9 @@
 <template>
-    <section class="grid border-l border-darker text-sm text-slate-800 shadow-sm" :style="{ 'grid-template-columns': layout }">
+    <section class="grid border-l border-darker text-sm text-slate-800 shadow-sm cursor-default" :style="{ 'grid-template-columns': layout }">
         <span v-for="(item, i) in items" class="contents">
-            <div>{{ i }}</div>
-            <template v-for="{ id, type } in columns">
-                <!-- Boolean/Checkbox -->
-                <div v-if="type === 'boolean'" class="justify-center material-symbols-outlined" :class="{'text-indigo-500': item[id]}">
-                    {{ item[id] ? 'radio_button_checked' : 'radio_button_unchecked' }}
-                </div>
-                <!-- Assigned -->
-                <div v-else-if="type === 'assigned'" class="justify-center text-center">
-                    {{ date(item[id]) }}
-                </div>
-                <!-- Date -->
-                <div v-else-if="type === 'start' || type === 'due'" class="justify-center text-center">
-                    {{ date(item[id]) }}
-                </div>
-                <!-- Normal text field -->
-                <div v-else :class="{'font-medium': type === 'name'}">
-                    {{ item[id] }}
-                </div>
+            <nav>{{ i }}</nav>
+            <template v-for="column in columns">
+                <GridField :column="column" :item="item" />
             </template>
         </span>
     </section>
@@ -26,6 +11,7 @@
 
 <script setup lang="ts">
     import { Column } from './grid'
+    import GridField from './GridField.jsx'
 
     defineProps<{
         columns: Column[];
@@ -33,27 +19,19 @@
         items: Record<string, any>[];
     }>();    
 
-    const year = new Date().getFullYear();
-    const withYear: Intl.DateTimeFormatOptions = { weekday: "short", year: "numeric", month: "short", day: "numeric" };    
-    const withoutYear: Intl.DateTimeFormatOptions = { weekday: "short", month: "short", day: "numeric" };    
-
-    function date(timestamp: number) {
-        const date = new Date(timestamp * 1_000);
-        return date.toLocaleString("en-US", date.getFullYear() === year ? withoutYear : withYear);
-    }
-
-
-
 </script>
 
 <style scoped lang="scss">
-
     section {
-        & > * > div {
+        &>span:hover>div {
+            @apply bg-hover;
+        }
+        &>span>div, &>span>nav {
             @apply border-r border-b border-darker p-2 flex items-center;
         }
+        &>span>nav {
+            @apply bg-zinc-50 flex justify-center text-xs text-slate-400;
+        }
     }
-
 </style>
 
-<!-- 'check_box' : 'check_box_outline_blank' -->
