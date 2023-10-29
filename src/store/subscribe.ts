@@ -1,4 +1,3 @@
-
 // Allow listeners to subscribe to named events, there can be only one listener for a name
 const listeners = new Map<string, (params: Record<string, string>) => void>();
 

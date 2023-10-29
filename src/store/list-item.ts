@@ -16,14 +16,10 @@ async function getListItems(listId: string) {
         const items: Record<string, any>[] = [];
         snapshot.forEach((doc) => {
             const data = doc.data();
-            items.push({id: doc.id, ...data });
+            items.push({ id: doc.id, ...data });
         });
         $items.set(items);
     });
 }
 
 export { $items, getListItems };
-
-
-
-

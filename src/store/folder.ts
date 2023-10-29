@@ -24,14 +24,13 @@ async function getFolders(uid: string) {
         folders[doc.id] = { id: doc.id, lists: [], ...doc.data() } as any as Folder;
     });
     // Get the lists
-    qry = query(listsRef, where("folder", "in", Object.keys(folders)));
+    qry = query(listsRef, where("folder", "in", Object.keys(folders)), orderBy("label"));
     snapshot = await getDocs(qry);
     snapshot.forEach((doc) => {
         const { folder, label, icon } = doc.data();
-        folders[folder].lists.push({id: doc.id, label, icon })
+        folders[folder].lists.push({ id: doc.id, label, icon });
     });
     $folders.set(Object.values(folders));
-
 }
 
 interface Folder {
