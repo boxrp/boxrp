@@ -2,12 +2,13 @@
     <div>
         <header class="flex flex-col">
             <Header :label="list?.label" :icon="list?.icon" class="px-4" />
-            <div class="mx-4 border-b flex">
+            <div class="mx-4 border-b flex items-center">
                 <TabBar class="" />
-                <ActionButtons />
+                <Search />
             </div>
             <div class="mx-4 mt-1 flex">
                 <SecondaryActions />
+                <ActionButtons />
             </div>
         </header>
         <main>
@@ -23,6 +24,7 @@
     import { useStore } from "@nanostores/vue";
     import Header from "./Header.vue";
     import TabBar from "./TabBar.vue";
+    import Search from "./Search.vue";
     import ActionButtons from "./ActionButtons.vue";
     import SecondaryActions from "./SecondaryActions.vue";
 
