@@ -1,9 +1,10 @@
-import { Field, List } from "@store/list";
+import { Field, List } from "@store/types";
 
 function columns(list: List): Column[] {
     const columns: Column[] = [];
-    for (const field of list.schema) {
+    for (const [id, field] of Object.entries(list.schema)) {
         columns.push({
+            id,
             ...field,
             width: fields[field.type],
         });
@@ -12,6 +13,7 @@ function columns(list: List): Column[] {
 }
 
 interface Column extends Field {
+    id: string;
     width: string;
 }
 

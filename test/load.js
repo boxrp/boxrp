@@ -26,25 +26,27 @@ const list = {
     uid: uid,
     org: uid,
     folder: folders[1].id,
-    schema: [
-        {id: "A", label: "Job", type: "name", required: true},
-        {id: "B", label: "Description", type: "text"},
-        {id: "C", label: "Start Date", type: "start"},
-        {id: "D", label: "Finish", type: "due"},
-        {id: "E", label: "Who", type: "accounts", max: 1},
-        {id: "F", label: "Status", type: "status", options: { "P": { label: "Pending", color: "#d6d3d1" }, "I": { label: "In Progress", color: "#dbeafe" }, "C": { label: "Completed", color: "#dcfce7" }}},
-        {id: "G", label: "Materials", type: "boolean"},
-        {id: "H", label: "Drawings", type: "boolean"},
-    ],
+    schema: {
+        A: {label: "Job", type: "name", required: true},
+        B: {label: "Description", type: "text"},
+        C: {label: "Start Date", type: "start"},
+        D: {label: "Finish", type: "due" },
+        E: {label: "Who", type: "accounts", max: 1},
+        F: {label: "Status", type: "status", groupable: true, required: true, defaultOption: "P", defaultGroup: true,
+            options: {  "P": "Pending",     "I": "In Progress",     "C": "Completed" },
+            colors: {   "P": "#d6d3d1",     "I": "#dbeafe",         "C": "#dcfce7" }
+        },
+        G: {label: "Materials", type: "boolean", groupable: true},
+        H: {label: "Drawings", type: "boolean", groupable: true},
+    },
 };
 let ref = await addDoc(lref, list);
 console.log("List", ref.id)
 const iref = collection(ref, 'list-items');
 
 list.label = "Quotes";
-list.schema = list.schema.filter((item) => { return  !"CDGH".includes(item.id) });
+list.schema.A.label = "Quote";
 await addDoc(lref, list);
-
 
 const items = [
     {

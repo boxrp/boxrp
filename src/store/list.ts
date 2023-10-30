@@ -1,69 +1,45 @@
-import { atom } from "nanostores";
+import { atom, computed } from "nanostores";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@store/firebase";
 import { subscribe } from "./subscribe";
 import { getListItems } from "./list-item";
+import { List } from "./types";
 
 const $list = atom<List | undefined>(undefined);
+const $group = atom<string>("");
+const $groups = computed($list, list => {
+    const groups: Record<string, string> = {};
+    if (list) {
+        // Filter the schema down to just the groupable fields and add their labels to the groups object
+        Object.entries(list.schema).filter(([, field]) => field.groupable).forEach(([key, field]) => { groups[key] = field.label; });
+    }
+    return groups;
+});
+const $currentGroupOptions = computed([$list, $group], (list, group) => {
+    return {
+        options: list?.schema[group]?.options,
+        colors: list?.schema[group]?.colors,
+    };
+});
+
 
 // Trigger getList when a list route changes
 subscribe("list", (params) => {
-    getList(params.id);
+    fetchList(params.id);
     getListItems(params.id);
 });
 
 // Get a list from Firestore
-async function getList(id: string) {
-    const list = await getDoc(doc(db, "lists", id));
-    $list.set({ id: list.id, ...list.data() } as any as List);
+async function fetchList(id: string) {
+    const document = await getDoc(doc(db, "lists", id));
+    const data = document.data();
+    if (data) {
+        const list: List = { id: document.id, ...data } as any as List;
+        $list.set(list);
+        $group.set("F");
+    }
 }
 
-interface List {
-    id: string;
-    label: string;
-    icon?: string;
-    uid: string;
-    org: string;
-    schema: Field[];
-    folder?: string;
-    time?: boolean;
-}
 
-interface Field {
-    id: string;
-    label: string;
-    type:
-        | "name"
-        | "status"
-        | "assigned"
-        | "created"
-        | "completed"
-        | "start"
-        | "due"
-        | "select"
-        | "text"
-        | "text area"
-        | "date"
-        | "today"
-        | "number"
-        | "money"
-        | "boolean"
-        | "email"
-        | "label"
-        | "address"
-        | "accounts"
-        | "progress"
-        | "phone"
-        | "priority"
-        | "rating"
-        | "website"
-        | "relationship"
-        | "formula";
-    required?: boolean;
-    max?: number;
-    min?: number;
-    relationship?: string;
-    options?: Record<string, string | { label: string; color?: string }>;
-}
 
-export { $list, getList, type List, type Field };
+export { $list, $group, $groups, $currentGroupOptions, fetchList };

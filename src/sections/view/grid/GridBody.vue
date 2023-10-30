@@ -1,7 +1,7 @@
 <template>
-    <section class="grid border-l border-darker text-sm text-slate-800 shadow-sm cursor-default" :style="{ 'grid-template-columns': layout }">
-        <span v-for="(item, i) in items" class="contents">
-            <nav>{{ i }}</nav>
+    <section class="grid text-sm text-slate-800 cursor-default" :class="{'all-border shadow-sm': border}" :style="{ 'grid-template-columns': layout }">
+        <span v-for="item in items" class="contents">
+            <nav :class="{'border-l': border}">check_box_outline_blank</nav>
             <template v-for="column in columns">
                 <GridField :column="column" :item="item" />
             </template>
@@ -10,27 +10,34 @@
 </template>
 
 <script setup lang="ts">
-    import { Column } from "./grid";
+    import { Column } from "./column";
     import GridField from "./GridField.jsx";
 
     defineProps<{
         columns: Column[];
         layout: string;
         items: Record<string, any>[];
+        border: boolean;
     }>();
 </script>
 
 <style scoped lang="scss">
     section {
-        & > span:hover > div {
-            @apply bg-hover;
+        & > span:hover > * {
+            @apply bg-slate-100;
         }
-        & > span > div,
-        & > span > nav {
-            @apply border-r border-b border-darker p-2 flex items-center;
+        & > span > * {
+            @apply border-b p-2 flex items-center;
         }
         & > span > nav {
-            @apply bg-zinc-50 flex justify-center text-xs text-slate-400;
+            @apply flex justify-center text-xl text-slate-400 icon cursor-pointer;
         }
     }
+    .all-border {
+        & > span > div,
+        & > span > nav {
+            @apply border-r;
+        }
+    }
+
 </style>

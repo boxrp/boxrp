@@ -6,8 +6,6 @@ export default {
             colors: {
                 primary: "#3966F8",
                 secondary: "#2a2e34",
-                outline: "#E4E4E7", // zinc-200
-                darker: "#d6d3d1", // Stone 300
                 logo: "#111111",
                 "boxrp": {
                     '50': '#eff4ff',

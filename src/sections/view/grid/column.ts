@@ -1,17 +1,20 @@
-import { Field, List } from "@store/list";
+import { Field, List } from "@store/types";
 
 function columns(list: List): Column[] {
     const columns: Column[] = [];
-    for (const field of list.schema) {
+    for (const id of Object.keys(list.schema)) {
+        const field = list.schema[id];
         columns.push({
+            id,
             ...field,
-            width: fields[field.type],
+            width: widths[field.type],
         });
     }
     return columns;
 }
 
 interface Column extends Field {
+    id: string;
     width: string;
 }
 
@@ -20,7 +23,7 @@ const DATE = "120px";
 const STANDARD = "240px";
 const FILL = "1fr";
 
-const fields = {
+const widths = {
     "name": FILL,
     "status": FILL,
     "assigned": FILL,

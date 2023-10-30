@@ -3,10 +3,10 @@
         <header class="flex flex-col">
             <Header :label="list?.label" :icon="list?.icon" class="px-4" />
             <div class="mx-4 border-b flex items-center">
-                <TabBar class="" />
+                <TabBar />
                 <Search />
             </div>
-            <div class="mx-4 mt-1 flex">
+            <div class="mx-4 mt-1 flex h-12">
                 <SecondaryActions />
                 <ActionButtons />
             </div>
@@ -28,7 +28,6 @@
     import ActionButtons from "./ActionButtons.vue";
     import SecondaryActions from "./SecondaryActions.vue";
 
-    import List from "./list/List.vue";
     import Grid from "./grid/Grid.vue";
     import Board from "./board/Board.vue";
 
@@ -36,10 +35,6 @@
 
     const view = computed(() => {
         switch (route.params.view) {
-            case "list":
-                return List;
-            case "grid":
-                return Grid;
             case "board":
                 return Board;
             default:

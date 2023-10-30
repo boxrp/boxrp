@@ -9,11 +9,4 @@ getCurrentUser().then((user) => {
     $uid.set(user?.uid);
 });
 
-interface User {
-    id: string;
-    uid: string;
-    email: string;
-    name: string;
-}
-
 export { $uid };

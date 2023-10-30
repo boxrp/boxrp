@@ -2,6 +2,7 @@ import { atom } from "nanostores";
 import { collection, query, where, orderBy, getDocs } from "firebase/firestore";
 import { db } from "@store/firebase";
 import { $uid } from "./user";
+import { Folder } from "./types";
 
 const $folders = atom<Folder[]>([]);
 
@@ -31,18 +32,6 @@ async function getFolders(uid: string) {
         folders[folder].lists.push({ id: doc.id, label, icon });
     });
     $folders.set(Object.values(folders));
-}
-
-interface Folder {
-    id: string;
-    label: string;
-    icon?: string;
-    lists: {
-        id: string;
-        label: string;
-        icon?: string;
-        status?: number;
-    }[];
 }
 
 export { $folders };

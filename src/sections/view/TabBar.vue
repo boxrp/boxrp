@@ -22,7 +22,6 @@
     const router = useRouter();
     const tabs = [
         { id: "list", icon: "table_rows" },
-        { id: "grid", icon: "calendar_view_month" },
         { id: "board", icon: "view_kanban" },
         { id: "calendar", icon: "calendar_month" },
         { id: "timeline", icon: "view_timeline" },

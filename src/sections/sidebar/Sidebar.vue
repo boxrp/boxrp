@@ -43,7 +43,7 @@
     import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
     import { useStore } from "@nanostores/vue";
     import { $folders } from "@store/folder";
-    import { getList } from "@store/list";
+    import { fetchList } from "@store/list";
     import items from "./items.json";
 
     const folders = useStore($folders);
@@ -54,7 +54,7 @@
         active.value = id;
         const path = `/list/${id}/list`;
         router.push(path);
-        getList(id);
+        fetchList(id);
     }
 
     function onBottomItemClick(id: string) {
