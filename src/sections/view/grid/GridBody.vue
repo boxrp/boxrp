@@ -24,7 +24,7 @@
 <style scoped lang="scss">
     section {
         & > span:hover > * {
-            @apply bg-slate-100;
+            @apply bg-slate-50;
         }
         & > span > * {
             @apply border-b p-2 flex items-center;

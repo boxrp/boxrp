@@ -7,8 +7,7 @@
 
 <script setup lang="ts">
     import { computed } from "vue";
-    import { $list } from "@store/list";
-    import { $items } from "@store/list-item";
+    import { $list, $items } from "@store/list";
     import { useStore } from "@nanostores/vue";
     import GridHeader from "./GridHeader.vue";
     import GridBody from "./GridBody.vue";

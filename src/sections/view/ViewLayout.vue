@@ -12,14 +12,12 @@
             </div>
         </header>
         <main>
-            <component :is="view"></component>
+            <router-view></router-view>
         </main>
     </div>
 </template>
 
 <script setup lang="ts">
-    import { computed } from "vue";
-    import { useRoute } from "vue-router";
     import { $list } from "@store/list";
     import { useStore } from "@nanostores/vue";
     import Header from "./Header.vue";
@@ -28,21 +26,8 @@
     import ActionButtons from "./ActionButtons.vue";
     import SecondaryActions from "./SecondaryActions.vue";
 
-    import Grid from "./grid/Grid.vue";
-    import Board from "./board/Board.vue";
-
     const list = useStore($list);
 
-    const view = computed(() => {
-        switch (route.params.view) {
-            case "board":
-                return Board;
-            default:
-                return Grid;
-        }
-    });
-
-    const route = useRoute();
 </script>
 
 <style scoped lang="scss"></style>

@@ -6,9 +6,8 @@
 
 <script setup lang="ts">
     import { computed } from "vue";
-    import { $list, $groups, $currentGroupOptions } from "@store/list";
+    import { $list, $groups, $currentGroupOptions, $items } from "@store/list";
     import { List } from "@store/types";
-    import { $items } from "@store/list-item";
     import { useStore } from "@nanostores/vue";
     import ListGroup from "./ListGroup.vue";
     import { columns } from "./columns";

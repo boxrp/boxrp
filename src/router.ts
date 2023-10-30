@@ -2,7 +2,11 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Auth from "@sections/auth/Auth.vue";
 import Layout from "@sections/Layout.vue";
 import Home from "@sections/home/Home.vue";
-import ListView from "@sections/view/ListView.vue";
+import ViewLayout from "@sections/view/ViewLayout.vue";
+
+import GridView from "@sections/view/grid/Grid.vue";
+import BoardView from "@sections/view/board/Board.vue";
+
 import { dispatch } from "@store/subscribe";
 
 const routes = [
@@ -12,7 +16,10 @@ const routes = [
     ]},
 
     { path: "/list", component: Layout, children: [
-        { path: ":id/:view", name: "list", component: ListView },
+        { path: ":id", component: ViewLayout, children: [
+            { path: "list", name: "list", component: GridView },
+            { path: "board", name: "board", component: BoardView },
+        ]},
     ]},
 ]
 

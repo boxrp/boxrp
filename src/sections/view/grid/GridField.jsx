@@ -1,28 +1,32 @@
 import { defineComponent } from "vue";
+import Chip from "/src/components/Chip.vue";
+import Avatar from "/src/components/Avatar.vue";
 
+/**
+ * Implement the GridField component in JSX rather than as a template because we want more JS control over the rendering.
+ */
 export default defineComponent({
     props: ["column", "item"],
 
     render() {
-        const { id, type, options } = this.column;
+        const { id, type, options, colors } = this.column;
         const value = this.item[id];
-
         switch (type) {
             case "name":
-                return <div class="font-medium">{value}</div>;
+                return <div className="font-medium">{value}</div>;
             case "status":
-                const { label, color } = options[value];
                 return (
-                    <div class="justify-center" style={"background-color:" + color}>
-                        {label}
+                    <div>
+                        <Chip color={colors[value]}>{options[value]}</Chip>
                     </div>
                 );
             case "boolean":
-                return <div class={`justify-center icon ${value ? "text-indigo-500" : ""}`}>{value ? "radio_button_checked" : "radio_button_unchecked"}</div>;
+                return <div className={`justify-center icon ${value ? "text-indigo-500" : ""}`}>{value ? "radio_button_checked" : "radio_button_unchecked"}</div>;
             case "start":
             case "due":
-                return <div class="">{date(value * 1_000)}</div>;
-
+                return <div className="">{date(value * 1_000)}</div>;
+            case "accounts":
+                return <Avatar name={value} />;
             default:
                 return <div>{value}</div>;
         }
@@ -30,7 +34,6 @@ export default defineComponent({
 });
 
 const withYear = (Intl.DateTimeFormatOptions = { weekday: "short", year: "numeric", month: "short", day: "numeric" });
-
 function date(value) {
     const date = new Date(value);
     return date.toLocaleDateString("en-US", withYear);
