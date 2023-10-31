@@ -4,7 +4,7 @@
         <section class="flex-1 flex flex-col">
             <router-view v-slot="{ Component }">
                 <transition name="fade" mode="out-in">
-                    <component :key="$route.path" :is="Component" />
+                    <component :key="$route.params.id || $route.path" :is="Component" />
                 </transition>
             </router-view>
         </section>

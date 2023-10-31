@@ -13,6 +13,14 @@
 </head>
 
 <body>
+
+    <script>
+        // Create a golbal to solve issues with dragula
+        if (global === undefined) {
+            var global = window;
+        }
+    </script>    
+
     <div id="app"></div>
     <script type="module" src="/src/index.ts"></script>
 </body>
