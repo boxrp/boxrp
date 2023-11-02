@@ -1,4 +1,4 @@
-import { Field, List } from "./types";
+import { Field, List, Option, ListItem } from "./types";
 
 interface SchemaList extends List {
     schema: Schema;
@@ -7,8 +7,11 @@ interface SchemaList extends List {
 // https://stackoverflow.com/questions/53128744/typescript-automatically-get-interface-properties-in-a-class
 interface SchemaField extends Field { }
 class SchemaField {
+    private optionsCache: Map<string, Option>;
+    
     constructor(field: Field) {
         Object.assign(this, field);
+        this.optionsCache = field.options ? new Map(field.options.map(option => [option.id, option])) : new Map();
     }
 
     get isDate() {
@@ -20,7 +23,25 @@ class SchemaField {
     }
 
     option(id: string) {
-        return this.options?.find(option => option.id === id);
+        return this.optionsCache.get(id);
+    }
+
+    // Group a list of ListItem by this field
+    group(items: ListItem[]) {
+        const other: ListItem[] = [];
+        const fieldKey = this.id;
+        const optionKeys: [string, ListItem[]][] = Array.from(this.optionsCache.keys()).map(key => [ key, []])
+        const groups: Map<string, ListItem[]> = new Map(optionKeys);
+        for (const item of items) {
+            const key = item[fieldKey];
+            (groups.get(key) || other).push(item);
+        }
+        return Array.from(groups.keys()).map(key => { 
+            return {
+                option: this.option(key),
+                items: groups.get(key)
+            }
+        });
     }
 
 }
@@ -32,6 +53,7 @@ class Schema {
 
     fields: SchemaField[];
 
+    // Get the fields that can be grouped on
     get groupable() {
         return this.fields.filter(field => field.isGroupable);
     }

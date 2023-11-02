@@ -2,7 +2,7 @@ import { atom, computed } from "nanostores";
 import { doc, getDoc, collection, query, onSnapshot, Unsubscribe } from "firebase/firestore";
 import { db } from "@store/firebase";
 import { subscribe } from "./subscribe";
-import { List, Field, Option } from "./types";
+import { List, ListItem, Option } from "./types";
 import { SchemaList, Schema, SchemaField } from "./schema";
 
 // Trigger getList when a list route changes
@@ -28,9 +28,8 @@ async function fetchList(id: string) {
     if (data) {
         const list: List = { id: document.id, ...data } as any as List;
         const schema = new Schema(list.fields);
-        console.log(schema);
         $list.set({...list, schema} as SchemaList);     
-        $group.set(schema.find("schema"));
+        $group.set(schema.find("status"));
     }
 }
 
@@ -38,30 +37,15 @@ async function fetchList(id: string) {
  * List Items
  */
 
-type ListItem = Record<string, any>;
 
 const $items = atom<ListItem[]>([]);
 
 // Group the items into columns by the current group
 const $grouped = computed([$items, $group], (items, groupField) => {
-    if (groupField?.options) {
-        const options: Map<string, Option> = new Map(groupField.options.map(option => [option.id, option]));
-        const optionKeys = Array.from(options.keys());
-        const { grouped } = group(optionKeys, groupField.id, items);
-        return optionKeys.map(key => { return { option: options.get(key), items: grouped.get(key) } });
-    }
-    return [];
+    return groupField ? groupField.group(items) : [];
 });
 
-// Group a list of items by a field
-function group(groupIds: string[], groupFieldId: string, items: ListItem[]) {
-    const grouped: Map<string, ListItem[]> = new Map(groupIds.map(group => [group, []]));
-    const other: ListItem[] = [];
-    items.forEach(item => {
-        (grouped.get(item[groupFieldId]) || other).push(item);
-    });
-    return { grouped, other };
-}
+
 
 // Get the items from firestore
 let unsubscribe: Unsubscribe | undefined;
