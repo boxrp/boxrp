@@ -6,6 +6,7 @@ import ViewLayout from "@sections/view/ViewLayout.vue";
 
 import GridView from "@sections/view/grid/Grid.vue";
 import BoardView from "@sections/view/board/Board.vue";
+import CalendarView from "@sections/view/calendar/Calendar.vue";
 
 import { dispatch } from "@store/subscribe";
 
@@ -19,6 +20,7 @@ const routes = [
         { path: ":id", component: ViewLayout, children: [
             { path: "list", name: "list", component: GridView },
             { path: "board", name: "board", component: BoardView },
+            { path: "calendar", name: "calendar", component: CalendarView },
         ]},
     ]},
 ]

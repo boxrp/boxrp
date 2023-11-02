@@ -1,21 +1,7 @@
-import { Field, List } from "@store/types";
+import { Field } from "@store/types";
 
-function columns(list: List): Column[] {
-    const columns: Column[] = [];
-    for (const id of Object.keys(list.schema)) {
-        const field = list.schema[id];
-        columns.push({
-            id,
-            ...field,
-            width: widths[field.type],
-        });
-    }
-    return columns;
-}
-
-interface Column extends Field {
-    id: string;
-    width: string;
+function width(fields: Field[]) {
+    return fields.map(field => widths[field.type]).join(" ") || "";
 }
 
 const MIN = "80px";
@@ -52,4 +38,4 @@ const widths = {
     "formula": STANDARD,
 };
 
-export { columns, type Column };
+export { width };

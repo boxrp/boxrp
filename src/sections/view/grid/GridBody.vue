@@ -2,19 +2,20 @@
     <section class="grid text-sm text-slate-800 cursor-default" :class="{'all-border shadow-sm': border}" :style="{ 'grid-template-columns': layout }">
         <span v-for="item in items" class="contents">
             <nav :class="{'border-l': border}">check_box_outline_blank</nav>
-            <template v-for="column in columns">
-                <GridField :column="column" :item="item" />
+            <template v-for="field in schema.fields">
+                <GridField :field="field" :item="item" />
             </template>
         </span>
     </section>
 </template>
 
 <script setup lang="ts">
-    import { Column } from "./column";
+    import { Field, Option } from "@store/types";
+    import { Schema, SchemaField } from "@store/schema";
     import GridField from "./GridField.jsx";
 
     defineProps<{
-        columns: Column[];
+        schema: Schema;
         layout: string;
         items: Record<string, any>[];
         border: boolean;

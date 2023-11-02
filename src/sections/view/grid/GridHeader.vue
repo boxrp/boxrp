@@ -1,15 +1,15 @@
 <template>
     <header class="grid text-sm border-b border-t font-medium text-slate-800 bg-yellow-50 bg-opacity-50" :class="{'all-border': border}" :style="{ 'grid-template-columns': layout }">
         <div style="border-top-width: 0"></div>
-        <div v-for="column in columns">{{ column.label }}</div>
+        <div v-for="field in fields">{{ field.label }}</div>
     </header>
 </template>
 
 <script setup lang="ts">
-    import { Column } from "./column";
+    import { Field } from "@store/types";
 
     defineProps<{
-        columns: Column[];
+        fields: Field[];
         layout: string;
         border: boolean;
     }>();

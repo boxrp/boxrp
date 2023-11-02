@@ -30,8 +30,9 @@
     }
 
     function dragEnd(e: DragEvent) {
-        const target = e.currentTarget as HTMLElement;
-        e.stopPropagation();
+        console.log(e);
+        // const target = e.currentTarget as HTMLElement;
+        // e.stopPropagation();
         //target.style.backgroundColor = 'transparent';
     }
 

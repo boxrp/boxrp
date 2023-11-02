@@ -11,18 +11,24 @@ interface Folder {
     }[];
 }
 
+interface NavItem {
+    label: string;
+    icon?: string;
+}
+
 interface List {
     id: string;
     label: string;
     icon?: string;
     uid: string;
     org: string;
-    schema: Record<string, Field>;
+    fields: Field[];
     folder?: string;
     time?: boolean;
 }
 
 interface Field {
+    id: string;
     label: string;
     type:
         | "name"
@@ -55,12 +61,19 @@ interface Field {
     max?: number;
     min?: number;
     relationship?: string;
-    options?: Record<string, string>;
-    colors?: Record<string, string>;
-    groupable?: boolean;
-    defaultOption?: string;
-    defaultGroup?: boolean;
+    options?: Option[];
+
+    // // Calculated
+    // cached?: {
+    //     options?: Record<string, Option>
+    // }
 }
 
+interface Option {
+    id: string;
+    value: string;
+    color?: string;
+    default?: boolean;
+}
 
-export { type Folder, type List, type Field }
+export { type Folder, type List, type Field, type NavItem, type Option }
