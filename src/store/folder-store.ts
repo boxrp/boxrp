@@ -1,21 +1,22 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { collection, query, where, orderBy, getDocs } from "firebase/firestore";
 import { db } from "@store/firebase";
-import { $uid } from "./user";
+import { useUserStore } from "./user-store";
 import { Folder } from "./types";
-
-// Wait for the user to be loaded
-$uid.listen((uid) => {
-    if (uid) {
-        useFolderStore().fetchFolders(uid);
-    }
-});
 
 const foldersRef = collection(db, "folders");
 const listsRef = collection(db, "lists");
 
 export const useFolderStore = defineStore('folder', () => {
+
+    // Watch for changes to the user, and fetch their folders when it does, i.e. login
+    const userStore = useUserStore();
+    watch(() => userStore.user, (user) => {
+        if (user) {
+            fetchFolders(user.uid);
+        }
+    });
 
     const $folders = ref<Folder[]>([]);
   

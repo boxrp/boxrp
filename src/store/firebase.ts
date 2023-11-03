@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, EmailAuthProvider, connectAuthEmulator } from "firebase/auth";
 import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
+import { useUserStore } from "./user-store";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -42,5 +43,10 @@ const db = getFirestore(app);
 // Connect the emulator
 connectAuthEmulator(auth, "http://127.0.0.1:9099", { disableWarnings: true });
 connectFirestoreEmulator(db, "127.0.0.1", 8080);
+
+auth.onAuthStateChanged((user) => {
+    console.log("User state changed", user?.uid)
+    useUserStore().setUser(user);
+});
 
 export { app, auth, uiConfig, db };
