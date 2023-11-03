@@ -13,7 +13,7 @@
         <div class="flex-1 overflow-y-auto">
             <!-- Folders -->
             <ul class="py-4 text-slate-500 text-sm font-medium">
-                <li v-for="folder in folders" class="flex flex-col justify-center cursor-pointer">
+                <li v-for="folder in store.folders" class="flex flex-col justify-center cursor-pointer">
                     <Disclosure v-slot="{ open }">
                         <DisclosureButton class="hover:bg-slate-100">
                             <NavItem :item="folder" :active="active === folder.id">
@@ -41,12 +41,16 @@
     import Logo from "@components/Logo.vue";
     import NavItem from "./NavItem.vue";
     import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
-    import { useStore } from "@nanostores/vue";
-    import { $folders } from "@store/folder";
     import { fetchList } from "@store/list";
     import items from "./items.json";
 
-    const folders = useStore($folders);
+    // import { useStore } from "@nanostores/vue";
+    // import { $folders } from "@store/folder";
+    import { useFolderStore } from "@store/folder-store";
+
+    //const folders = useStore($folders);
+
+    const store = useFolderStore();
     const router = useRouter();
     const active = ref("home");
 
