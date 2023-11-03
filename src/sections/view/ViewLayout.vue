@@ -1,7 +1,7 @@
 <template>
     <div>
         <header class="flex flex-col">
-            <Header :label="list?.label" :icon="list?.icon" class="px-4" />
+            <Header :label="store.list?.label" :icon="store.list?.icon" class="px-4" />
             <div class="mx-4 border-b flex items-center">
                 <TabBar />
                 <Search />
@@ -18,15 +18,14 @@
 </template>
 
 <script setup lang="ts">
-    import { $list } from "@store/list";
-    import { useStore } from "@nanostores/vue";
+    import { useListStore } from "@store/list-store";
     import Header from "./Header.vue";
     import TabBar from "./TabBar.vue";
     import Search from "./Search.vue";
     import ActionButtons from "./ActionButtons.vue";
     import SecondaryActions from "./SecondaryActions.vue";
 
-    const list = useStore($list);
+    const store = useListStore();
 
 </script>
 

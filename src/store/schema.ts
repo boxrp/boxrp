@@ -47,8 +47,8 @@ class SchemaField {
 }
 
 class Schema {
-    constructor(fields: Field[]) {
-        this.fields = fields.map(field => new SchemaField(field));
+    constructor(fields?: Field[]) {
+        this.fields = fields ? fields.map(field => new SchemaField(field)) : [];
     }
 
     fields: SchemaField[];

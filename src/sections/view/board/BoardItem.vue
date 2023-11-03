@@ -6,7 +6,7 @@
 
 
 <script setup lang="ts">
-    import { ListItem } from "@store/list";
+    import { ListItem } from "@store/types";
 
     defineProps<{
         item: ListItem;

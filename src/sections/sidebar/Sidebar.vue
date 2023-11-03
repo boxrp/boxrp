@@ -41,14 +41,9 @@
     import Logo from "@components/Logo.vue";
     import NavItem from "./NavItem.vue";
     import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
-    import { fetchList } from "@store/list";
     import items from "./items.json";
 
-    // import { useStore } from "@nanostores/vue";
-    // import { $folders } from "@store/folder";
     import { useFolderStore } from "@store/folder-store";
-
-    //const folders = useStore($folders);
 
     const store = useFolderStore();
     const router = useRouter();
@@ -58,7 +53,6 @@
         active.value = id;
         const path = `/list/${id}/list`;
         router.push(path);
-        fetchList(id);
     }
 
     function onBottomItemClick(id: string) {

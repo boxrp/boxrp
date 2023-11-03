@@ -2,7 +2,7 @@
     <section class="grid text-sm text-slate-800 cursor-default" :class="{'all-border shadow-sm': border}" :style="{ 'grid-template-columns': layout }">
         <span v-for="item in items" class="contents">
             <nav :class="{'border-l': border}">check_box_outline_blank</nav>
-            <template v-for="field in schema.fields">
+            <template v-for="field in schema?.fields">
                 <GridField :field="field" :item="item" />
             </template>
         </span>
@@ -10,8 +10,7 @@
 </template>
 
 <script setup lang="ts">
-    import { Field, Option } from "@store/types";
-    import { Schema, SchemaField } from "@store/schema";
+    import { Schema } from "@store/schema";
     import GridField from "./GridField.jsx";
 
     defineProps<{

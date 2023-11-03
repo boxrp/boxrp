@@ -15,7 +15,7 @@ describe('Folder Store', () => {
 
     it('Gets folders', async () => {
         const store = useFolderStore();
-        await store.getFolders(UID);
+        await store.fetchFolders(UID);
         expect(store.folders.length).toBe(3)
     })
 

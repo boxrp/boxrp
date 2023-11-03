@@ -1,24 +1,19 @@
 <template>
-    <div v-if="list" class="px-4 mt-2">
-        <GridHeader :fields="list.fields as Field[]" :layout="widths" :border="false" />
-        <GridBody :schema="list.schema as Schema" :layout="widths" :items="(items as Record<string, string>[])" :border="false" />
+    <div v-if="store.list" class="px-4 mt-2">
+        <GridHeader :fields="store.list.fields || []" :layout="widths" :border="false" />
+        <GridBody :schema="store.list.schema" :layout="widths" :items="store.items" :border="false" />
     </div>
 </template>
 
 <script setup lang="ts">
     import { computed } from "vue";
-    import { Field } from "@store/types";
-    import { Schema } from "@store/schema";
-    import { $list, $items } from "@store/list";
-    import { useStore } from "@nanostores/vue";
+    import { useListStore } from "@store/list-store";
     import GridHeader from "./GridHeader.vue";
     import GridBody from "./GridBody.vue";
     import { width } from "./widths";
 
-    const list = useStore($list);
-    const items = useStore($items);
-
-    const widths = computed(() => "32px " + width(list.value?.fields as Field[] || []));
+    const store = useListStore();
+    const widths = computed(() => "32px " + width(store.list?.fields || []));
 
     // defineProps<{
     //     list: List;

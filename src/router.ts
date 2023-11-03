@@ -8,7 +8,7 @@ import GridView from "@sections/view/grid/Grid.vue";
 import BoardView from "@sections/view/board/Board.vue";
 import CalendarView from "@sections/view/calendar/Calendar.vue";
 
-import { dispatch } from "@store/subscribe";
+import { useListStore } from "@store/list-store";
 
 const routes = [
     { path: "/", name: "auth", component: Auth },
@@ -25,15 +25,24 @@ const routes = [
     ]},
 ]
 
-
 const router = createRouter({
     history: createWebHistory(),
     routes
 });
 
-// Call listeners when route changes
-router.afterEach((to) => {
-    dispatch(to.name as string, to.params as Record<string, string>);
+// Wait until the router is initilised, then setup watches
+router.isReady().then(() => {
+    const listStore = useListStore();
+    router.afterEach((to) => {
+        switch (to.name) {
+            case "list":
+            case "board":
+            case "calendar":
+                listStore.fetchList(to.params.id as string);
+                listStore.fetchListItems(to.params.id as string);
+                break;
+        }
+    });
 });
 
 export { router };
