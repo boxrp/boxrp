@@ -1,5 +1,5 @@
 <template>
-    <header class="grid text-sm border-b border-t font-medium text-slate-800 bg-yellow-50 bg-opacity-50" :class="{'all-border': border}" :style="{ 'grid-template-columns': layout }">
+    <header class="grid-header grid text-sm border-b border-t" :class="{'all-border': border}" :style="{ 'grid-template-columns': layout }">
         <div style="border-top-width: 0"></div>
         <div v-for="field in fields">{{ field.label }}</div>
     </header>
@@ -16,6 +16,9 @@
 </script>
 
 <style scoped lang="scss">
+    // Import grid-header
+    @import "../shared.scss";
+
     header {
         &>div {
             @apply p-2 whitespace-nowrap overflow-hidden overflow-ellipsis;
@@ -27,4 +30,3 @@
         }
     }
 </style>
-./column
