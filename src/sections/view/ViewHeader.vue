@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="h-full flex flex-col overflow-hidden">
         <header class="flex flex-col">
             <Header :label="store.list?.label" :icon="store.list?.icon" class="px-4" />
             <div class="mx-4 border-b flex items-center">
@@ -11,9 +11,6 @@
                 <ActionButtons />
             </div>
         </header>
-        <main>
-            <router-view></router-view>
-        </main>
     </div>
 </template>
 

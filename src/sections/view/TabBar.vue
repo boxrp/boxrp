@@ -21,12 +21,12 @@
     const route = useRoute();
     const router = useRouter();
     const tabs = [
-        { id: "list", icon: "table_rows" },
+        { id: "grid", icon: "table_rows" },
         { id: "board", icon: "view_kanban" },
         { id: "calendar", icon: "calendar_month" },
         { id: "timeline", icon: "view_timeline" },
     ];
-    const active = computed(() => route.name || "list");
+    const active = computed(() => route.name || "grid");
 
     function changeView(view: string) {
         const path = `/list/${router.currentRoute.value.params.id}/${view}`;

@@ -1,7 +1,7 @@
 <template>
-    <div v-if="store.list" class="px-4 mt-2">
-        <GridHeader :fields="store.list.fields || []" :layout="widths" :border="false" />
-        <GridBody :schema="store.list.schema" :layout="widths" :items="store.items" :border="false" />
+    <div class="px-4 mt-2">
+        <GridHeader :fields="store.list?.fields || []" :layout="widths" :border="false" />
+        <GridBody :schema="store.list?.schema" :layout="widths" :items="store.items" :border="false" />
     </div>
 </template>
 

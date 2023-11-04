@@ -14,7 +14,7 @@
     import GridField from "./GridField.jsx";
 
     defineProps<{
-        schema: Schema;
+        schema: Schema | undefined;
         layout: string;
         items: Record<string, any>[];
         border: boolean;

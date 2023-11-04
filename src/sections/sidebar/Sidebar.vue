@@ -51,7 +51,7 @@
 
     function showList(id: string) {
         active.value = id;
-        const path = `/list/${id}/list`;
+        const path = `/list/${id}/grid`;
         router.push(path);
     }
 
