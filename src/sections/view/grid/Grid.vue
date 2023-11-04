@@ -1,5 +1,5 @@
 <template>
-    <div class="px-4 mt-2">
+    <div>
         <GridHeader :fields="store.list?.fields || []" :layout="widths" :border="false" />
         <GridBody :schema="store.list?.schema" :layout="widths" :items="store.items" :border="false" />
     </div>

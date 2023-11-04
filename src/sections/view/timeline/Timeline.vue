@@ -1,24 +1,19 @@
 <template>
-    <div class="timeline mx-4 mt-2 text-slate-500 border-t border-l bg-slate-50 caption grid">
+    <div class="timeline caption grid h-full">
         <header v-for="week in store.weeks">
             {{ format(week, 'dd MMM') }} - {{ format(add(week, { days: 6 }), 'dd MMM') }}
         </header>
-        <div v-for="day in store.days" :class="{'bg-gray-100': [0, 6].includes(getDay(day))}">
+        <div v-for="day in store.days" :class="{'bg-blue-50': isToday(day), 'bg-gray-100': [0, 6].includes(getDay(day)) && !isToday(day) }">
             <div>{{ format(day, 'dd') }}</div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-    import { computed } from 'vue';
     import { useTimelineStore } from '@store/timeline-store';
-    // import { weeks } from '@store/timeline-store';
-    import { format, isToday, getDay, getDate, isPast, add } from 'date-fns'
+    import { format, isToday, getDay, add } from 'date-fns'
 
     const store = useTimelineStore();
-    // const dates = computed(() => weeks(new Date()));
-
-
 
 </script>
 
@@ -28,15 +23,16 @@
 
     .timeline {
         grid-template-columns: repeat(63, 32px);
+        grid-template-rows: auto 1fr;
 
         &>header {
-            @apply col-span-7 text-xs text-center font-semibold py-1;
-            @apply border-b border-r;
+            @apply grid-header;
+            @apply col-span-7 text-center py-2;
+            @apply border-t border-b border-r;
         }
         &>div {
-            @apply text-xs text-center font-semibold;
+            @apply text-xs text-center font-medium text-slate-500;
             @apply border-b border-r;
-            @apply h-96;
             &>div {
                 @apply border-b py-1;
             }
