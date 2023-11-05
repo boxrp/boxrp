@@ -10,15 +10,10 @@ const listsRef = collection(db, "lists");
 
 export const useFolderStore = defineStore('folder', () => {
 
-    // Watch for changes to the user, and fetch their folders when it does, i.e. login
-    const userStore = useUserStore();
-    watch(() => userStore.user, (user) => {
-        if (user) {
-            fetchFolders(user.uid);
-        }
-    });
-
     const $folders = ref<Folder[]>([]);
+    const $edit = ref({
+        selected: "",
+    });
   
     async function fetchFolders(uid: string) {
         const folders: Record<string, Folder> = {};
@@ -38,5 +33,13 @@ export const useFolderStore = defineStore('folder', () => {
         $folders.value = Object.values(folders);
     }
 
-    return { fetchFolders, folders: $folders }
+    // Watch for changes to the user, and fetch their folders when it does, i.e. login
+    const userStore = useUserStore();
+    watch(() => userStore.user, (user) => {
+        if (user) {
+            fetchFolders(user.uid);
+        }
+    });
+
+    return { fetchFolders, folders: $folders, edit: $edit }
   });

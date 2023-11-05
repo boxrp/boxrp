@@ -20,4 +20,3 @@
         icon?: string;
     }>();
 </script>
-@stores/sidebar

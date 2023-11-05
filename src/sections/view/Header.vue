@@ -28,4 +28,3 @@
     }>();
 </script>
 
-<!-- , {id: "form", icon: "article"} -->

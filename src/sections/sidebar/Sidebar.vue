@@ -7,12 +7,12 @@
             </div>
         </header>
         <!-- Header -->
-        <ul class="py-4 text-slate-500 text-sm font-medium border-b">
+        <ul class="py-2 text-slate-500 text-sm font-medium border-b">
             <NavItem v-for="item in items.top" :item="item" :active="active === item.id" @click="showList(item.id)">99+</NavItem>
         </ul>
         <div class="flex-1 overflow-y-auto">
             <!-- Folders -->
-            <ul class="py-4 text-slate-500 text-sm font-medium">
+            <ul class="py-2 text-slate-500 text-sm font-medium">
                 <li v-for="folder in store.folders" class="flex flex-col justify-center cursor-pointer">
                     <Disclosure v-slot="{ open }">
                         <DisclosureButton class="hover:bg-slate-100">
@@ -28,7 +28,7 @@
             </ul>
         </div>
         <!-- Footer -->
-        <ul class="py-4 text-slate-500 text-sm font-medium border-t">
+        <ul class="py-2 text-slate-500 text-sm font-medium border-t">
             <NavItem v-for="item in items.bottom" :item="item" :active="active === item.id" @click="onBottomItemClick(item.id)" />
         </ul>
     </nav>
@@ -38,12 +38,11 @@
     import { ref } from "vue";
     import { useRouter } from "vue-router";
     import { auth } from "@store/firebase";
+    import { useFolderStore } from "@store/folder-store";
     import Logo from "@components/Logo.vue";
     import NavItem from "./NavItem.vue";
     import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
     import items from "./items.json";
-
-    import { useFolderStore } from "@store/folder-store";
 
     const store = useFolderStore();
     const router = useRouter();
@@ -56,9 +55,15 @@
     }
 
     function onBottomItemClick(id: string) {
-        console.log(id);
-        auth.signOut();
-        router.push({ name: "auth" });
+        switch (id) {
+            case "folders":
+                router.push({ name: "folders" });
+                break;
+            case "logout":
+                auth.signOut();
+                router.push({ name: "auth" });
+                break;
+        }
     }
 </script>
 

@@ -9,6 +9,9 @@ import BoardContent from "@sections/view/board/Board.vue";
 import CalendarContent from "@sections/view/calendar/Calendar.vue";
 import TimelineContent from "@sections/view/timeline/Timeline.vue";
 
+import FoldersHeader from "@sections/settings/folders/FoldersHeader.vue";
+import EditFolders from "@sections/settings/folders/EditFolders.vue";
+
 import { useListStore } from "@store/list-store";
 
 const routes = [
@@ -23,6 +26,11 @@ const routes = [
         { path: ":id/calendar", name: "calendar", components: { header: ViewHeader, content: CalendarContent } },
         { path: ":id/timeline", name: "timeline", components: { header: ViewHeader, content: TimelineContent } },
     ]},
+
+    { path: "/settings", component: Layout, children: [
+        { path: "folders", name: "folders", components: { header: FoldersHeader, content: EditFolders } },
+    ]},
+
 ]
 
 const router = createRouter({
