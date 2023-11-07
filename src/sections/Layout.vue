@@ -1,6 +1,6 @@
 <template>
     <main class="w-screen h-screen flex overflow-hidden">
-        <Sidebar class="w-96" />
+        <Sidebar class="w-58" />
         <div class="flex-1 overflow-hidden">
             <router-view v-slot="{ Component }">
                 <transition name="fade" mode="out-in">
@@ -16,11 +16,13 @@
 </script>
 
 <style lang="scss">
-    .fade-enter-active, .fade-leave-active {
+    .fade-enter-active,
+    .fade-leave-active {
         transition: opacity 0.1s;
     }
 
-    .fade-enter-from, .fade-leave-to {
+    .fade-enter-from,
+    .fade-leave-to {
         opacity: 0;
     }
 </style>

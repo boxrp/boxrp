@@ -21,7 +21,6 @@
     import DragZone from "@components/dnd/DragZone.vue";
 
     const store = useListStore();
-
 </script>
 
 <style lang="scss">
@@ -33,9 +32,8 @@
     }
     .drop-proxy {
         @apply bg-gray-100;
-        &>* {
+        & > * {
             @apply invisible;
         }
     }
-
 </style>

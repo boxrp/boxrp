@@ -27,4 +27,3 @@
         icon: string | undefined;
     }>();
 </script>
-

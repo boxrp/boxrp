@@ -1,17 +1,13 @@
-import { Field, List, Option, ListItem } from "./types";
-
-interface SchemaList extends List {
-    schema: Schema;
-}
+import { Field, Option, ListItem } from "./types";
 
 // https://stackoverflow.com/questions/53128744/typescript-automatically-get-interface-properties-in-a-class
-interface SchemaField extends Field { }
+interface SchemaField extends Field {}
 class SchemaField {
     private optionsCache: Map<string, Option>;
-    
+
     constructor(field: Field) {
         Object.assign(this, field);
-        this.optionsCache = field.options ? new Map(field.options.map(option => [option.id, option])) : new Map();
+        this.optionsCache = field.options ? new Map(field.options.map((option) => [option.id, option])) : new Map();
     }
 
     get isDate() {
@@ -30,44 +26,41 @@ class SchemaField {
     group(items: ListItem[]) {
         const other: ListItem[] = [];
         const fieldKey = this.id;
-        const optionKeys: [string, ListItem[]][] = Array.from(this.optionsCache.keys()).map(key => [ key, []])
+        const optionKeys: [string, ListItem[]][] = Array.from(this.optionsCache.keys()).map((key) => [key, []]);
         const groups: Map<string, ListItem[]> = new Map(optionKeys);
         for (const item of items) {
             const key = item[fieldKey];
             (groups.get(key) || other).push(item);
         }
-        return Array.from(groups.keys()).map(key => { 
+        return Array.from(groups.keys()).map((key) => {
             return {
                 option: this.option(key),
-                items: groups.get(key)
-            }
+                items: groups.get(key),
+            };
         });
     }
-
 }
 
 class Schema {
     constructor(fields?: Field[]) {
-        this.fields = fields ? fields.map(field => new SchemaField(field)) : [];
+        this.fields = fields ? fields.map((field) => new SchemaField(field)) : [];
     }
 
     fields: SchemaField[];
 
     // Get the fields that can be grouped on
     get groupable() {
-        return this.fields.filter(field => field.isGroupable);
+        return this.fields.filter((field) => field.isGroupable);
     }
 
     find(id: string) {
-        return this.fields.find(field => field.id === id);
+        return this.fields.find((field) => field.id === id);
     }
-
 }
 
-export { type SchemaList, Schema, SchemaField };
+export { Schema, SchemaField };
 
-
-const types: Record<string, { date: boolean, group: boolean }> = {
+const types: Record<string, { date: boolean; group: boolean }> = {
     "name": { date: false, group: false },
     "status": { date: false, group: true },
     "assigned": { date: false, group: true },
@@ -93,6 +86,5 @@ const types: Record<string, { date: boolean, group: boolean }> = {
     "rating": { date: false, group: true },
     "website": { date: false, group: false },
     "relationship": { date: false, group: false },
-    "formula": { date: false, group: false }
+    "formula": { date: false, group: false },
 };
-

@@ -26,7 +26,6 @@
         options: Record<string, string>;
         icon?: string;
     }>();
-
 </script>
 
 <!-- <transition enter-active-class="transition duration-100 ease-out"

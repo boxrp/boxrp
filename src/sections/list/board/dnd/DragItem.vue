@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
     const props = defineProps<{
-        id: string
+        id: string;
         data?: any;
     }>();
 
@@ -14,17 +14,13 @@
         //target.style.backgroundColor = 'red';
 
         if (e.dataTransfer) {
-            e.dataTransfer.dropEffect = 'none'
-            e.dataTransfer.effectAllowed = 'none'
+            e.dataTransfer.dropEffect = "none";
+            e.dataTransfer.effectAllowed = "none";
 
             e.dataTransfer.setData("application/json", JSON.stringify(props.data));
             // e.dataTransfer.setDragImage(dragger, 0, 0);
-
         }
         e.stopPropagation();
-
-
-
 
         //e.currentTarget.style.backgroundColor = 'yellow';
     }
@@ -35,9 +31,6 @@
         // e.stopPropagation();
         //target.style.backgroundColor = 'transparent';
     }
-
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

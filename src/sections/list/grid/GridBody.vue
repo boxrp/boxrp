@@ -1,7 +1,7 @@
 <template>
-    <section class="grid text-sm text-slate-800 cursor-default" :class="{'all-border shadow-sm': border}" :style="{ 'grid-template-columns': layout }">
+    <section class="grid text-sm text-slate-800 cursor-default" :class="{ 'all-border': border }" :style="{ 'grid-template-columns': layout }">
         <span v-for="item in items" class="contents">
-            <nav :class="{'border-l': border}">check_box_outline_blank</nav>
+            <nav :class="{ 'border-l': border }">check_box_outline_blank</nav>
             <template v-for="field in schema?.fields">
                 <GridField :field="field" :item="item" />
             </template>
@@ -39,5 +39,4 @@
             @apply border-r;
         }
     }
-
 </style>

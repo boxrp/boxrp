@@ -8,10 +8,12 @@
             <div class="icon-button">delete</div>
 
             <button class="button py-1 pl-2 ml-1" :disabled="!store.edit.selected">
-                <figure class="icon">add</figure>Add List
+                <figure class="icon">add</figure>
+                Add List
             </button>
             <button class="button py-1 pl-2 ml-1 disabled:opacity-50">
-                <figure class="icon">add</figure>Add Folder
+                <figure class="icon">add</figure>
+                Add Folder
             </button>
         </div>
     </SettingsHeader>
@@ -23,4 +25,3 @@
 
     const store = useFolderStore();
 </script>
-

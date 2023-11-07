@@ -1,10 +1,10 @@
 <template>
-    <div >
+    <div>
         <slot name="header"></slot>
         <div @dragenter="enter" @dragleave="exit" @drop="drop" @dragover="dragOver" class="border border-red-500">
             <slot></slot>
         </div>
-        {{ inout  }}
+        {{ inout }}
     </div>
 </template>
 
@@ -14,9 +14,7 @@
     // defineProps<{
     // }>();
 
-
-
-    const inout = ref("out")
+    const inout = ref("out");
 
     // function dragEnter(e: DragEvent) {
     //     const target = e.currentTarget as HTMLElement;
@@ -27,7 +25,6 @@
     //     const target = e.currentTarget as HTMLElement;
     //     target.style.border = '1px solid red';
     // }
-
 
     function drop(e: DragEvent) {
         console.log(e);
@@ -43,23 +40,19 @@
         const target = e.currentTarget as HTMLElement;
         target.classList.add("drag");
 
-        inout.value = "in"
+        inout.value = "in";
         e.stopPropagation();
     }
 
     function exit(e: DragEvent) {
         console.log("exit");
-        inout.value = "out"
+        inout.value = "out";
         e.stopPropagation();
     }
-
-
 </script>
 
 <style lang="scss">
-
     .drag * {
         pointer-events: none;
     }
-
 </style>

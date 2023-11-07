@@ -8,12 +8,11 @@
     import { ref, onMounted } from "vue";
     import { dragula } from "./dragula";
 
-    // defineProps<{ 
+    // defineProps<{
     //     columnClass?: string }
     // >()
 
     const content = ref<HTMLElement | null>(null);
-
 
     onMounted(() => {
         if (content.value) {
@@ -44,5 +43,4 @@
     }
     .drop-proxy {
     }
-
 </style>

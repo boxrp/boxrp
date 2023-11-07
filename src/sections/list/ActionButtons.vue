@@ -14,8 +14,7 @@
             <figure class="icon">add</figure>
             Add Job
         </div>
-
-</div>
+    </div>
 </template>
 
 <script setup lang="ts"></script>

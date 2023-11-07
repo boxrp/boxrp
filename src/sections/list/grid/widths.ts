@@ -1,7 +1,7 @@
 import { Field } from "@store/types";
 
 function width(fields: Field[]) {
-    return fields.map(field => widths[field.type]).join(" ") || "";
+    return fields.map((field) => widths[field.type]).join(" ") || "";
 }
 
 const MIN = "80px";

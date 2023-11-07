@@ -1,15 +1,15 @@
 <template>
-    <header class="grid-header grid border-b border-t caption text-sm" :class="{'all-border': border}" :style="{ 'grid-template-columns': layout }">
+    <header class="grid-header grid border-b border-t caption text-sm" :class="{ 'all-border': border }" :style="{ 'grid-template-columns': layout }">
         <div style="border-top-width: 0"></div>
-        <div v-for="field in fields">{{ field.label }}</div>
+        <div v-for="field in list?.fields">{{ field.label }}</div>
     </header>
 </template>
 
 <script setup lang="ts">
-    import { Field } from "@store/types";
+    import { List } from "@store/types";
 
     defineProps<{
-        fields: Field[];
+        list: List | undefined;
         layout: string;
         border: boolean;
     }>();
@@ -20,12 +20,12 @@
     @import "../shared.scss";
 
     header {
-        &>div {
+        & > div {
             @apply p-2 whitespace-nowrap overflow-hidden overflow-ellipsis;
         }
     }
     .all-border {
-        &>div {
+        & > div {
             @apply border-r;
         }
     }

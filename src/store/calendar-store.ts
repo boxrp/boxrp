@@ -1,21 +1,20 @@
-import { defineStore } from 'pinia'
-import { ref } from 'vue';
+import { defineStore } from "pinia";
+import { ref } from "vue";
 
-const useCalendarStore = defineStore('calendar', () => {
-
+const useCalendarStore = defineStore("calendar", () => {
     const $month = ref<Date>(new Date());
 
-    return { month: $month }
-  });
+    return { month: $month };
+});
 
-import { startOfMonth, endOfMonth, eachDayOfInterval, eachWeekOfInterval, startOfWeek, endOfWeek, add, sub } from 'date-fns';
+import { startOfMonth, endOfMonth, eachDayOfInterval, eachWeekOfInterval, startOfWeek, endOfWeek, add, sub } from "date-fns";
 
 //Return an array of Date objects for the days of the month padded to weeks
 function daysOfMonth(date: Date) {
     const firstSunday = startOfWeek(startOfMonth(date), { weekStartsOn: 0 });
     const lastSaturday = endOfWeek(endOfMonth(date), { weekStartsOn: 0 });
     return eachDayOfInterval({ start: firstSunday, end: lastSaturday });
-};
+}
 
 function weeks(date: Date, past = 4, future = 4) {
     const sunday = startOfWeek(date, { weekStartsOn: 0 });
@@ -23,10 +22,9 @@ function weeks(date: Date, past = 4, future = 4) {
     return startWeeks.map((weekSunday) => {
         return {
             start: weekSunday,
-            end: add(weekSunday, { days: 6 })
+            end: add(weekSunday, { days: 6 }),
         };
     });
-};
+}
 
-
-export { useCalendarStore, daysOfMonth, weeks } 
+export { useCalendarStore, daysOfMonth, weeks };

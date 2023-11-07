@@ -1,4 +1,3 @@
-
 interface Folder {
     id: string;
     label: string;
@@ -71,5 +70,4 @@ interface Option {
 
 type ListItem = Record<string, any>;
 
-
-export { type Folder, type List, type Field, type NavItem, type Option, type ListItem }
+export { type Folder, type List, type Field, type NavItem, type Option, type ListItem };

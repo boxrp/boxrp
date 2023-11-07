@@ -1,24 +1,35 @@
-import { defineStore } from 'pinia'
-import { ref, computed } from 'vue';
+import { defineStore } from "pinia";
+import { ref, computed, watch } from "vue";
 import { doc, getDoc, collection, query, onSnapshot, Unsubscribe } from "firebase/firestore";
 import { db } from "@store/firebase";
-import { List, ListItem } from "./types";
-import { Schema, SchemaList, SchemaField } from "./schema";
+import { List, ListItem, Field } from "./types";
+import { useRoute } from "vue-router";
+import { Schema } from "./schema";
 
-export const useListStore = defineStore('list', () => {
+export const useListStore = defineStore("list", () => {
+    const $list = ref<List | undefined>(undefined);
+    const $items = ref<ListItem[]>([]);
+    const $group = ref<Field | undefined>(undefined);
 
-    const $list = ref<SchemaList | undefined>(undefined);
-    const $items = ref<ListItem[]>([]);  
-    const $group = ref<SchemaField | undefined>(undefined); 
+    // Watch for changes in the route that trigger a new list load
+    const route = useRoute();
+    watch(
+        () => route.params.id,
+        (newId, oldId) => {
+            if (route.name === "list" && newId !== oldId) {
+                fetchList(newId as string);
+                fetchListItems(newId as string);
+            }
+        },
+        { immediate: false }
+    );
 
     async function fetchList(id: string) {
         console.log("Fetch list", id);
         const document = await getDoc(doc(db, "lists", id));
         const data = document.data();
         if (data) {
-            const list: List = { id: document.id, ...data } as any as List;
-            const schema = new Schema(list.fields);
-            $list.value = { ...list, schema };
+            $list.value = { id: document.id, ...data } as any as List;
             // TODO: Make this configurable
             setGroup("status");
         }
@@ -44,12 +55,17 @@ export const useListStore = defineStore('list', () => {
     }
 
     function setGroup(group: string) {
-        $group.value = $list.value?.schema.find(group);
+        $group.value = $list.value?.fields.find((field) => field.id === group);
     }
 
     const $grouped = computed(() => {
-        return $group.value ? $group.value.group($items.value) : undefined;
-    });    
+        // return $group.value ? $group.value.group($items.value) : undefined;
+        return undefined;
+    });
 
-    return { fetchList, fetchListItems, list: $list, items: $items, setGroup, group: $group, grouped: $grouped }
+    const $schema = computed(() => {
+        return $list.value ? new Schema($list.value.fields) : undefined;
+    });
+
+    return { fetchList, fetchListItems, list: $list, items: $items, setGroup, group: $group, grouped: $grouped, schema: $schema };
 });

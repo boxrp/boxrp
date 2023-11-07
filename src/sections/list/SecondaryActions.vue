@@ -15,7 +15,4 @@
 
     // const group = useStore($group);
     // const groupable = useStore($groupable);
-
-
-
 </script>

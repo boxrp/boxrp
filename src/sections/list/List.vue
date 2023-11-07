@@ -9,9 +9,8 @@
 </template>
 
 <script setup lang="ts">
-    import { computed, watch } from "vue";
+    import { computed } from "vue";
     import { useRoute } from "vue-router";
-    import { useListStore } from "@store/list-store";
     import { standardDefinition as definition } from "@store/view-definition";
     import ListHeader from "./ListHeader.vue";
     import Grid from "./grid/Grid.vue";
@@ -19,22 +18,7 @@
     import Calendar from "./calendar/Calendar.vue";
     import Timeline from "./timeline/Timeline.vue";
 
-    const route = useRoute(); 
-    const store = useListStore();
-
-    watch(() => route.params.id, (newId, oldId) => {
-        if (newId !== oldId) {
-            fetchList(newId as string);
-        }
-    });
-
-
-    fetchList(route.params.id as string);
-
-    function fetchList(id: string) {
-        store.fetchList(id);
-        store.fetchListItems(id);
-    }
+    const route = useRoute();
 
     const view = computed(() => {
         // console.log(route.params.tab);
@@ -49,8 +33,6 @@
                 return Grid;
         }
     });
-
-
 </script>
 
 <style scoped lang="scss"></style>

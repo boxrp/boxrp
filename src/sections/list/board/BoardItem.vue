@@ -4,7 +4,6 @@
     </li>
 </template>
 
-
 <script setup lang="ts">
     import { ListItem } from "@store/types";
 

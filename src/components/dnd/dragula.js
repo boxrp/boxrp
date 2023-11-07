@@ -1,4 +1,3 @@
-
 import emitter from "contra/emitter";
 import * as classes from "./classes";
 
@@ -6,9 +5,13 @@ var doc = document;
 var documentElement = doc.documentElement;
 
 const crossvent = {
-    add: (el, type, fn) => { return el.addEventListener(type, fn) },
-    remove: (el, type, fn) => { return el.removeEventListener(type, fn) }
-}
+    add: (el, type, fn) => {
+        return el.addEventListener(type, fn);
+    },
+    remove: (el, type, fn) => {
+        return el.removeEventListener(type, fn);
+    },
+};
 
 function dragula(initialContainers, options) {
     var len = arguments.length;
@@ -560,9 +563,9 @@ function touchy(el, op, type, fn) {
     //     console.log('msPointerEnabled')
     //     crossvent[op](el, microsoft[type], fn);
     // } else {
-        // console.log('touch')
-        crossvent[op](el, touch[type], fn);
-        crossvent[op](el, type, fn);
+    // console.log('touch')
+    crossvent[op](el, touch[type], fn);
+    crossvent[op](el, type, fn);
     // }
 }
 

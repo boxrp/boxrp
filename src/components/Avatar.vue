@@ -1,21 +1,19 @@
 <template>
     <div class="flex gap-1.5">
-        <div class="rounded-full h-8 w-8 bg-cyan-500 flex items-center justify-center text-xs font-semibold" :style="color(initials)">{{
-            initials }}
-        </div>
+        <div class="rounded-full h-8 w-8 bg-cyan-500 flex items-center justify-center text-xs font-semibold" :style="color(initials)">{{ initials }}</div>
         <div>{{ name }}</div>
     </div>
 </template>
 
 <script setup lang="ts">
-    import { computed } from 'vue';
+    import { computed } from "vue";
 
     const props = defineProps<{
         name: string;
     }>();
 
     const initials = computed(() => {
-        const names = props.name.split(' ');
+        const names = props.name.split(" ");
         const first = names[0];
         const last = names.length > 1 ? names[names.length - 1] : " ";
         return (first[0] + last[0]).trim();
@@ -30,14 +28,15 @@
         }
         const color = colors[hash % colors.length];
         const text = invert(color);
-        return `background-color: ${color}; color: ${text}`
+        return `background-color: ${color}; color: ${text}`;
     }
-    
+
     // https://stackoverflow.com/questions/35969656/how-can-i-generate-the-opposite-color-according-to-current-color
     function invert(hex: string) {
         hex = hex.slice(1);
-        const r = parseInt(hex.slice(0, 2), 16), g = parseInt(hex.slice(2, 4), 16), b = parseInt(hex.slice(4, 6), 16);
-        return (r * 0.299 + g * 0.587 + b * 0.114) > 186 ? '#000000' : '#FFFFFF';
+        const r = parseInt(hex.slice(0, 2), 16),
+            g = parseInt(hex.slice(2, 4), 16),
+            b = parseInt(hex.slice(4, 6), 16);
+        return r * 0.299 + g * 0.587 + b * 0.114 > 186 ? "#000000" : "#FFFFFF";
     }
-
 </script>

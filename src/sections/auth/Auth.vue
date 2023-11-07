@@ -19,7 +19,6 @@
         const ui = new firebaseui.auth.AuthUI(auth);
         ui.start("#auth", uiConfig);
     });
-
 </script>
 
 <style lang="scss">

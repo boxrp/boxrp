@@ -16,4 +16,3 @@
         icon: string;
     }>();
 </script>
-

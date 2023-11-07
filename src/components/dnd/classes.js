@@ -1,4 +1,3 @@
-
 var cache = {};
 var start = "(?:^|\\s)";
 var end = "(?:\\s|$)";
@@ -27,4 +26,3 @@ function rmClass(el, className) {
 }
 
 export { addClass as add, rmClass as rm };
-

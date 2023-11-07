@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia'
-import { ref, watch } from 'vue';
+import { defineStore } from "pinia";
+import { ref, watch } from "vue";
 import { collection, query, where, orderBy, getDocs } from "firebase/firestore";
 import { db } from "@store/firebase";
 import { useUserStore } from "./user-store";
@@ -8,13 +8,12 @@ import { Folder } from "./types";
 const foldersRef = collection(db, "folders");
 const listsRef = collection(db, "lists");
 
-export const useFolderStore = defineStore('folder', () => {
-
+export const useFolderStore = defineStore("folder", () => {
     const $folders = ref<Folder[]>([]);
     const $edit = ref({
         selected: "",
     });
-  
+
     async function fetchFolders(uid: string) {
         const folders: Record<string, Folder> = {};
         // Get the folders
@@ -29,17 +28,20 @@ export const useFolderStore = defineStore('folder', () => {
         snapshot.forEach((doc) => {
             const { folder, label, icon } = doc.data();
             folders[folder].lists.push({ id: doc.id, label, icon });
-        });        
+        });
         $folders.value = Object.values(folders);
     }
 
     // Watch for changes to the user, and fetch their folders when it does, i.e. login
     const userStore = useUserStore();
-    watch(() => userStore.user, (user) => {
-        if (user) {
-            fetchFolders(user.uid);
+    watch(
+        () => userStore.user,
+        (user) => {
+            if (user) {
+                fetchFolders(user.uid);
+            }
         }
-    });
+    );
 
-    return { fetchFolders, folders: $folders, edit: $edit }
-  });
+    return { fetchFolders, folders: $folders, edit: $edit };
+});
