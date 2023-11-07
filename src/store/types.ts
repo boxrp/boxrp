@@ -23,8 +23,6 @@ interface List {
     uid: string;
     org: string;
     fields: Field[];
-    folder?: string;
-    time?: boolean;
 }
 
 interface Field {
@@ -62,11 +60,6 @@ interface Field {
     min?: number;
     relationship?: string;
     options?: Option[];
-
-    // // Calculated
-    // cached?: {
-    //     options?: Record<string, Option>
-    // }
 }
 
 interface Option {

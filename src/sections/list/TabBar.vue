@@ -26,7 +26,7 @@
         { id: "calendar", icon: "calendar_month" },
         { id: "timeline", icon: "view_timeline" },
     ];
-    const active = computed(() => route.name || "grid");
+    const active = computed(() => route.params.tab || "grid");
 
     function changeView(view: string) {
         const path = `/list/${router.currentRoute.value.params.id}/${view}`;

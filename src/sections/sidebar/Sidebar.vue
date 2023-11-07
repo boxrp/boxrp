@@ -55,6 +55,7 @@
     }
 
     function onBottomItemClick(id: string) {
+        active.value = id;
         switch (id) {
             case "folders":
                 router.push({ name: "folders" });

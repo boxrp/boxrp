@@ -55,6 +55,7 @@ body {
         @apply uppercase font-medium tracking-widest text-sm text-white px-3 py-2 rounded-full flex items-center gap-1 cursor-pointer; 
         @apply bg-indigo-500;
         @apply hover:bg-indigo-600 disabled:opacity-50 disabled:hover:bg-indigo-500;
+        @apply border border-indigo-500;
         &>figure {
             @apply icon;
         }
@@ -65,11 +66,11 @@ body {
     }
     .button-low {
         @extend .button;
-        @apply bg-indigo-500 hover:bg-indigo-600;
+        @apply border-transparent bg-indigo-500 hover:bg-indigo-600;
     }
     .text-button {
         @extend .button;
-        @apply text-slate-500 bg-transparent hover:bg-hover hover:text-slate-800;
+        @apply border-transparent text-slate-500 bg-transparent hover:bg-hover hover:text-slate-800;
     }
     .icon-button {
         @apply icon cursor-pointer p-1 rounded-md text-slate-500 hover:bg-hover hover:text-slate-800;

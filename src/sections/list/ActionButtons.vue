@@ -5,13 +5,17 @@
         <div class="icon-button">upgrade</div>
         <div class="icon-button rotate-180">upgrade</div>
         <div class="icon-button">delete</div>
-        <div>
-            <div class="button py-1 pl-2 ml-1">
-                <figure class="icon">add</figure>
-                Add Job
-            </div>
+
+        <div class="button-medium py-1 pl-2 ml-1">
+            <figure class="icon">add</figure>
+            Add Task
         </div>
-    </div>
+        <div class="button py-1 pl-2 ml-2">
+            <figure class="icon">add</figure>
+            Add Job
+        </div>
+
+</div>
 </template>
 
 <script setup lang="ts"></script>

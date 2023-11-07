@@ -1,16 +1,13 @@
 <template>
-    <main class="w-screen h-screen grid grid-cols-[auto,1fr] grid-rows-[auto,1fr] overflow-hidden">
-        <Sidebar class="row-span-2" />
-        <header class="">
-            <router-view name="header"  />
-        </header>
-        <section class="overflow-auto">
-            <router-view name="content" v-slot="{ Component }">
+    <main class="w-screen h-screen flex overflow-hidden">
+        <Sidebar class="w-96" />
+        <div class="flex-1 overflow-hidden">
+            <router-view v-slot="{ Component }">
                 <transition name="fade" mode="out-in">
-                    <component :key="$route.params.id || $route.path" :is="Component" />
+                    <component :is="Component" :key="$route.params.id || $route.name || $route.path" />
                 </transition>
-            </router-view> 
-        </section>
+            </router-view>
+        </div>
     </main>
 </template>
 
@@ -19,19 +16,11 @@
 </script>
 
 <style lang="scss">
-    .fade-enter-active {
-        animation: fade 0.25s;
-    }
-    .fade-leave-active {
-        animation: fade 0.25s reverse;
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity 0.1s;
     }
 
-    @keyframes fade {
-        from {
-            opacity: 0%;
-        }
-        to {
-            opacity: 100%;
-        }
+    .fade-enter-from, .fade-leave-to {
+        opacity: 0;
     }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="h-full flex flex-col mb-2">
+    <!-- <div class="h-full flex flex-col mb-2"> -->
         <header class="flex flex-col">
             <Header :label="store.list?.label" :icon="store.list?.icon" class="px-4" />
             <div class="mx-4 border-b flex items-center">
@@ -11,7 +11,7 @@
                 <ActionButtons />
             </div>
         </header>
-    </div>
+    <!-- </div> -->
 </template>
 
 <script setup lang="ts">
@@ -21,8 +21,13 @@
     import Search from "./Search.vue";
     import ActionButtons from "./ActionButtons.vue";
     import SecondaryActions from "./SecondaryActions.vue";
+    import { ViewDefinition } from "@store/view-definition";
 
     const store = useListStore();
+
+    defineProps<{
+        definition: ViewDefinition;
+    }>();
 
 </script>
 
