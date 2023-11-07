@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-cols-7 border-t h-full grid-rows-[auto_1fr_1fr_1fr_1fr_1fr]">
+    <div class="grid grid-cols-7 h-full grid-rows-[auto_1fr_1fr_1fr_1fr_1fr]">
         <div v-for="day in days" class="grid-header border-r border-b p-2 caption text-center">
             {{ day }}
         </div>

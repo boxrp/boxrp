@@ -1,5 +1,5 @@
 <template>
-    <header class="grid-header grid border-b border-t caption text-sm" :class="{ 'all-border': border }" :style="{ 'grid-template-columns': layout }">
+    <header class="grid-header grid border-b caption text-sm" :class="{ 'all-border': border }" :style="{ 'grid-template-columns': layout }">
         <div style="border-top-width: 0"></div>
         <div v-for="field in list?.fields">{{ field.label }}</div>
     </header>

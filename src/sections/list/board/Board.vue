@@ -1,5 +1,5 @@
 <template>
-    <div class="px-4 flex gap-4">
+    <div class="px-4 pt-4 flex gap-4">
         <DragGroup class="flex gap-4">
             <section v-for="{ option, items } in store.grouped" class="w-60 flex flex-col gap-4">
                 <header class="grid-header border border-t-8 caption px-3 py-2 rounded-md shadow-sm flex gap-2 mb-2" :style="{ 'border-top-color': option?.color }">

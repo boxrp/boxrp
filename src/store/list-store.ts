@@ -9,7 +9,7 @@ import { Schema } from "./schema";
 export const useListStore = defineStore("list", () => {
     const $list = ref<List | undefined>(undefined);
     const $items = ref<ListItem[]>([]);
-    const $group = ref<Field | undefined>(undefined);
+    const $group = ref<string | undefined>(undefined);
 
     // Watch for changes in the route that trigger a new list load
     const route = useRoute();
@@ -55,12 +55,15 @@ export const useListStore = defineStore("list", () => {
     }
 
     function setGroup(group: string) {
-        $group.value = $list.value?.fields.find((field) => field.id === group);
+        $group.value = group;
     }
 
     const $grouped = computed(() => {
-        // return $group.value ? $group.value.group($items.value) : undefined;
-        return undefined;
+        if ($group.value) {
+            const field = $schema.value?.fields.find((field) => field.id === $group.value);
+            return field ? field.group($items.value) : [];
+        }
+        return [];
     });
 
     const $schema = computed(() => {

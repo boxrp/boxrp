@@ -1,11 +1,11 @@
 <template>
     <header class="flex flex-col">
         <Header :label="store.list?.label" :icon="store.list?.icon" class="px-4" />
-        <div class="mx-4 border-b flex items-center">
+        <div class="mx-4 border-b flex items-center h-14">
             <TabBar />
             <Search />
         </div>
-        <div class="pl-4 mt-1 flex h-12 items-center">
+        <div class="pl-4 mt-1 flex h-14 items-center border-b">
             <SecondaryActions />
             <ActionButtons />
         </div>

@@ -25,7 +25,7 @@
         & > header {
             @apply grid-header;
             @apply col-span-7 text-center py-2;
-            @apply border-t border-b border-r;
+            @apply border-b border-r;
         }
         & > div {
             @apply text-xs text-center font-medium text-slate-500;
