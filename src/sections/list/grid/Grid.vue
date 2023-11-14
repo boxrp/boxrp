@@ -1,6 +1,6 @@
 <template>
     <div>
-        <GridHeader :list="store.list" :layout="widths" :border="false" />
+        <GridHeader :fields="store.list?.fields" :layout="widths" :border="false" />
         <GridBody :schema="store.schema" :layout="widths" :items="store.items" :border="false" />
     </div>
 </template>

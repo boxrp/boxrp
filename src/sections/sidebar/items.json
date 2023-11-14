@@ -6,7 +6,7 @@
         { "id": "analytics", "icon": "chart_data", "label": "Analytics" }
     ],
     "bottom": [
-        { "id": "folders", "icon": "bookmark_manager", "label": "Edit Folders & Lists" },
+        { "id": "spaces", "icon": "workspaces", "label": "Spaces & Folders" },
         { "id": "settings", "icon": "settings", "label": "Settings" },
         { "id": "logout", "icon": "logout", "label": "Logout" }
     ]

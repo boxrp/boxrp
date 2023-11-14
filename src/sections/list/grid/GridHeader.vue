@@ -1,17 +1,16 @@
 <template>
-    <header class="grid-header grid border-b caption text-sm" :class="{ 'all-border': border }" :style="{ 'grid-template-columns': layout }">
+    <header class="grid-header grid border-b caption text-sm" :style="{ 'grid-template-columns': layout }">
         <div style="border-top-width: 0"></div>
-        <div v-for="field in list?.fields">{{ field.label }}</div>
+        <div v-for="field in fields">{{ field.label }}</div>
     </header>
 </template>
 
 <script setup lang="ts">
-    import { List } from "@store/types";
+    import { Field } from "@store/types";
 
     defineProps<{
-        list: List | undefined;
+        fields: Field[] | undefined;
         layout: string;
-        border: boolean;
     }>();
 </script>
 
@@ -24,9 +23,5 @@
             @apply p-2 whitespace-nowrap overflow-hidden overflow-ellipsis;
         }
     }
-    .all-border {
-        & > div {
-            @apply border-r;
-        }
-    }
+
 </style>

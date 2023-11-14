@@ -25,9 +25,11 @@ export default defineComponent({
                 return <div className={`justify-center icon ${value ? "text-indigo-500" : ""}`}>{value ? "radio_button_checked" : "radio_button_unchecked"}</div>;
             case "start":
             case "due":
-                return <div className="">{date(value * 1_000)}</div>;
+                return <div>{date(value * 1_000)}</div>;
             case "accounts":
                 return <Avatar name={value} />;
+            case "icon":
+                return <div><div className="icon">{value}</div></div>;
             default:
                 return <div>{value}</div>;
         }

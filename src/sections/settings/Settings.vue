@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col h-full">
-        <ListHeader :label="store.list?.label" :icon="store.list?.icon" :definition="definition" />
+        <ListHeader :definition="definition" />
         <!-- This class must be overflow-auto -->
         <section class="flex-1 overflow-auto">
             <component :is="view" />
@@ -11,7 +11,6 @@
 <script setup lang="ts">
     import { computed } from "vue";
     import { useRoute } from "vue-router";
-    import { useListStore } from "@store/list-store";
     import { standardDefinition as definition } from "@store/list-view-definition";
     import ListHeader from "./ListHeader.vue";
     import Grid from "./grid/Grid.vue";
@@ -19,10 +18,10 @@
     import Calendar from "./calendar/Calendar.vue";
     import Timeline from "./timeline/Timeline.vue";
 
-    const store = useListStore();
     const route = useRoute();
 
     const view = computed(() => {
+        // console.log(route.params.tab);
         switch (route.params.tab) {
             case "board":
                 return Board;

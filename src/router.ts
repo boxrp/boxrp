@@ -5,8 +5,8 @@ import Home from "@sections/home/Home.vue";
 
 import List from "@sections/list/List.vue";
 
-// import FoldersHeader from "@sections/settings/folders/FoldersHeader.vue";
-// import EditFolders from "@sections/settings/folders/EditFolders.vue";
+import Folders from "@sections/settings/folders/Folders.vue";
+import Spaces from "@sections/settings/spaces/Spaces.vue";
 
 const routes = [
     { path: "/", name: "auth", component: Auth },
@@ -18,15 +18,18 @@ const routes = [
         { path: ":id/:tab", name: "list", component: List }
     ]},
 
+    { path: "/settings", component: Layout, children: [
+        { path: "folders", name: "folders", component: Folders },
+        { path: "spaces", name: "spaces", component: Spaces }
+    ]},
+
+
 ]
 
 const router = createRouter({
     history: createWebHistory(),
     routes
 });
-
-// Wait until the router is initilised, then setup watches
-
 
 export { router };
 

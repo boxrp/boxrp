@@ -30,6 +30,7 @@
         "paths": {
             "@assets/*": [ "src/assets/*" ],
             "@components/*": ["src/components/*" ],
+            "@view/*": ["src/view/*" ],
             "@sections/*": ["src/sections/*" ],
             "@store/*": ["src/store/*" ],
         }

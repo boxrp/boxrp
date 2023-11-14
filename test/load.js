@@ -4,28 +4,37 @@ import { doc, setDoc, collection, addDoc } from "firebase/firestore";
 console.log("Connected to Firebase");
 
 const uid = "q8JJV5WzR4rNdJxjGuqFVhHDWTpU";
-const folders = [
-    { label: "CRM", order: 2 },
+const spaces = [
+    { label: "CRM", icon: "face", order: 2 },
     { label: "Jobs", order: 1 },
     { label: "Accounting", order: 3 },
 ]
 
 // Folders
-const fref = collection(db, 'folders');
-const lref = collection(db, 'lists');
+const fref = collection(db, 'spaces');
 
-for (const folder of folders) {
-    folder["uid"] = uid;
-    let ref = await addDoc(fref, folder);
-    folder["id"] = ref.id;
-    console.log("Folder", ref.id)
+for (const space of spaces) {
+    space["uid"] = uid;
+    const ref = await addDoc(fref, space);
+    space.id = ref.id;
+    console.log("Space", space.id)
 }
+
+const crm = spaces[0];
+const lists = ["Leads", "Deals", "Contacts", "Accounts"];
+for (const list of lists) {
+    const lref = collection(db, 'spaces', crm.id, 'lists');
+    let ref = await addDoc(lref, { label: list, uid: uid, org: uid });
+    console.log("List", ref.id)
+}
+
+const jobs = spaces[1];
 
 const list = {
     label: 'Active Jobs',
     uid: uid,
     org: uid,
-    folder: folders[1].id,
+    space: jobs.id,
     fields: [
         { id: "name", label: "Job", type: "name", required: true },
         { id: "B", label: "Description", type: "text" },
@@ -40,13 +49,11 @@ const list = {
         { id: "H", label: "Drawings", type: "boolean", groupable: true },
     ],
 };
+
+const lref = collection(db, 'spaces', jobs.id, 'lists');
 let ref = await addDoc(lref, list);
 console.log("List", ref.id)
 const iref = collection(ref, 'list-items');
-
-list.label = "Quotes";
-list.fields[0].label = "Quote";
-await addDoc(lref, list);
 
 const items = [
     {

@@ -1,3 +1,15 @@
+interface Space {
+    id: string;
+    label: string;
+    icon?: string;
+    lists: {
+        id: string;
+        label: string;
+        icon?: string;
+        status?: number;
+    }[];
+}
+
 interface Folder {
     id: string;
     label: string;
@@ -38,6 +50,7 @@ interface Field {
         | "select"
         | "text"
         | "text area"
+        | "icon"
         | "date"
         | "today"
         | "number"
@@ -68,6 +81,8 @@ interface Option {
     default?: boolean;
 }
 
-type ListItem = Record<string, any>;
+interface ListItem extends Record<string, any> {
+    children?: Record<string, any>[];
+}
 
-export { type Folder, type List, type Field, type NavItem, type Option, type ListItem };
+export { type Space, type Folder, type List, type Field, type NavItem, type Option, type ListItem };

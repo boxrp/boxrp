@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref, computed, watch } from "vue";
 import { doc, getDoc, collection, query, onSnapshot, Unsubscribe } from "firebase/firestore";
 import { db } from "@store/firebase";
-import { List, ListItem, Field } from "./types";
+import { List, ListItem } from "./types";
 import { useRoute } from "vue-router";
 import { Schema } from "./schema";
 
@@ -10,19 +10,6 @@ export const useListStore = defineStore("list", () => {
     const $list = ref<List | undefined>(undefined);
     const $items = ref<ListItem[]>([]);
     const $group = ref<string | undefined>(undefined);
-
-    // Watch for changes in the route that trigger a new list load
-    const route = useRoute();
-    watch(
-        () => route.params.id,
-        (newId, oldId) => {
-            if (route.name === "list" && newId !== oldId) {
-                fetchList(newId as string);
-                fetchListItems(newId as string);
-            }
-        },
-        { immediate: false }
-    );
 
     async function fetchList(id: string) {
         console.log("Fetch list", id);
@@ -69,6 +56,21 @@ export const useListStore = defineStore("list", () => {
     const $schema = computed(() => {
         return $list.value ? new Schema($list.value.fields) : undefined;
     });
+
+    // Watch for changes in the route that trigger a new list load
+    // This must be done at the end of the store definition so that the state has been initialized
+    const route = useRoute();
+    watch(
+        () => route.params.id,
+        (newId, oldId) => {
+            if (route.name === "list" && newId !== oldId) {
+                fetchList(newId as string);
+                fetchListItems(newId as string);
+            }
+        },
+        { immediate: true }
+    );
+
 
     return { fetchList, fetchListItems, list: $list, items: $items, setGroup, group: $group, grouped: $grouped, schema: $schema };
 });

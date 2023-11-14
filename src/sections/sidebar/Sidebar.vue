@@ -11,25 +11,12 @@
             <NavItem v-for="item in items.top" :item="item" :active="active === item.id" @click="showList(item.id)">99+</NavItem>
         </ul>
         <div class="flex-1 overflow-y-auto">
-            <!-- Folders -->
-            <ul class="py-2 text-slate-500 text-sm font-medium">
-                <li v-for="folder in store.folders" class="flex flex-col justify-center cursor-pointer">
-                    <Disclosure v-slot="{ open }">
-                        <DisclosureButton class="hover:bg-slate-100">
-                            <NavItem :item="folder" :active="active === folder.id">
-                                <div class="material-symbols-outlined">{{ open ? "expand_less" : "expand_more" }}</div>
-                            </NavItem>
-                        </DisclosureButton>
-                        <DisclosurePanel class="text-gray-500">
-                            <NavItem v-for="view in folder.lists" :item="view" :small="true" :active="active === view.id" icon="format_list_bulleted" @click="showList(view.id)"></NavItem>
-                        </DisclosurePanel>
-                    </Disclosure>
-                </li>
-            </ul>
+            <!-- Spaces -->
+            <Spaces :spaces="store.spaces" :active="active" @spaceclick="spaceClick" @listclick="listClick" />
         </div>
         <!-- Footer -->
         <ul class="py-2 text-slate-500 text-sm font-medium border-t">
-            <NavItem v-for="item in items.bottom" :item="item" :active="active === item.id" @click="onBottomItemClick(item.id)" />
+            <NavItem v-for="item in items.bottom" :item="item" :active="active === item.id" @click="bottomItemClick(item.id)" />
         </ul>
     </nav>
 </template>
@@ -38,13 +25,13 @@
     import { ref } from "vue";
     import { useRouter } from "vue-router";
     import { auth } from "@store/firebase";
-    import { useFolderStore } from "@store/folder-store";
+    import { useSpaceStore } from "@store/space-store";
     import Logo from "@components/Logo.vue";
     import NavItem from "./NavItem.vue";
-    import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
+    import Spaces from "./Spaces.vue";
     import items from "./items.json";
 
-    const store = useFolderStore();
+    const store = useSpaceStore();
     const router = useRouter();
     const active = ref("home");
 
@@ -54,11 +41,22 @@
         router.push(path);
     }
 
-    function onBottomItemClick(id: string) {
+    function spaceClick(id: string) {
+        active.value = id;
+        const path = `/space/${id}`;
+        router.push(path);
+    }
+    function listClick(id: string) {
+        active.value = id;
+        const path = `/list/${id}/grid`;
+        router.push(path);
+    }
+
+    function bottomItemClick(id: string) {
         active.value = id;
         switch (id) {
-            case "folders":
-                router.push({ name: "folders" });
+            case "spaces":
+                router.push({ name: "spaces" });
                 break;
             case "logout":
                 auth.signOut();

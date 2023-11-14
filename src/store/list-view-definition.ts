@@ -1,9 +1,9 @@
 interface ViewDefinition {
-    viewActions: Action[];
-    search: boolean;
-    tabs: Tab[];
-    primaryAction: Action;
-    secondaryAction: Action;
+    viewActions?: Action[];
+    search?: boolean;
+    tabs?: Tab[];
+    primaryAction?: Action;
+    secondaryAction?: Action;
 }
 
 interface Action {
@@ -14,6 +14,7 @@ interface Action {
 
 interface Tab {
     id: string;
+    icon: string;
     actions: Action[];
     filters: string[];
 }
@@ -33,10 +34,10 @@ const del = { id: "delete", label: "Delete", icon: "delete" };
 const standardFilters = ["group", "filter", "assigned", "closed"];
 
 const standardTabs: Tab[] = [
-    { id: "grid", actions: [lines, wrap, promote, demote, del], filters: standardFilters },
-    { id: "board", actions: [lines, wrap, promote, demote, del], filters: standardFilters },
-    { id: "calendar", actions: [lines, wrap, promote, demote, del], filters: standardFilters },
-    { id: "timeline", actions: [lines, wrap, promote, demote, del], filters: standardFilters },
+    { id: "grid", icon: "table_rows", actions: [lines, wrap, promote, demote, del], filters: standardFilters },
+    { id: "board", icon: "view_kanban", actions: [lines, wrap, promote, demote, del], filters: standardFilters },
+    { id: "calendar", icon: "calendar_month", actions: [lines, wrap, promote, demote, del], filters: standardFilters },
+    { id: "timeline", icon: "view_timeline", actions: [lines, wrap, promote, demote, del], filters: standardFilters },
 ];
 
 const standardDefinition: ViewDefinition = {
@@ -47,4 +48,4 @@ const standardDefinition: ViewDefinition = {
     secondaryAction: { id: "filter", label: "Filter", icon: "filter_list" },
 };
 
-export { type ViewDefinition, standardDefinition };
+export { type ViewDefinition, type Tab, type Action, standardDefinition };

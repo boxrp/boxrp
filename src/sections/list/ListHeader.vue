@@ -1,9 +1,9 @@
 <template>
     <header class="flex flex-col">
-        <Header :label="store.list?.label" :icon="store.list?.icon" class="px-4" />
+        <Header :label="label" :icon="icon" :actions="definition.viewActions" class="px-4" />
         <div class="mx-4 border-b flex items-center h-14">
-            <TabBar />
-            <Search />
+            <TabBar :tabs="definition.tabs" />
+            <Search v-if="definition.search" />
         </div>
         <div class="pl-4 mt-1 flex h-14 items-center border-b">
             <SecondaryActions />
@@ -13,17 +13,17 @@
 </template>
 
 <script setup lang="ts">
-    import { useListStore } from "@store/list-store";
     import Header from "./Header.vue";
     import TabBar from "./TabBar.vue";
     import Search from "./Search.vue";
     import ActionButtons from "./ActionButtons.vue";
     import SecondaryActions from "./SecondaryActions.vue";
-    import { ViewDefinition } from "@store/view-definition";
+    import { ViewDefinition } from "@store/list-view-definition";
 
-    const store = useListStore();
 
     defineProps<{
+        label: string | undefined;
+        icon: string | undefined;
         definition: ViewDefinition;
     }>();
 </script>
