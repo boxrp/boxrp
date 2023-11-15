@@ -1,19 +1,31 @@
 <template>
-    <div class="flex flex-col h-full">
-        <ListHeader :label="store.list?.label" :icon="store.list?.icon" :definition="definition" />
-        <!-- This class must be overflow-auto -->
-        <section class="flex-1 overflow-auto">
+    <HeaderScroller>
+        <template #header>
+            <Title :title="store.list?.label" :icon="store.list?.icon" :actions="actions.title" />
+            <TabSearch />
+            <FilterAction />
+        </template>
+        <template #scroller>
             <component :is="view" />
-        </section>
-    </div>
+        </template>            
+    </HeaderScroller>
 </template>
 
 <script setup lang="ts">
     import { computed } from "vue";
     import { useRoute } from "vue-router";
     import { useListStore } from "@store/list-store";
+
+    import actions from "./actions.json";
+
+    import HeaderScroller from "@view/HeaderScroller.vue";
+    import Title from "@view/Title.vue";
+    import TabSearch from "./TabSearch.vue";
+    import FilterAction from "./FilterAction.vue";
+
+
     import { standardDefinition as definition } from "@store/list-view-definition";
-    import ListHeader from "./ListHeader.vue";
+
     import Grid from "./grid/Grid.vue";
     import Board from "./board/Board.vue";
     import Calendar from "./calendar/Calendar.vue";
@@ -34,6 +46,11 @@
                 return Grid;
         }
     });
+
+    function tabClick(id: string) {
+        console.log(id);
+    }
+
 </script>
 
 <style scoped lang="scss"></style>

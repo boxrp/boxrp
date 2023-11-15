@@ -14,7 +14,7 @@
     import { computed } from "vue";
     import { useFolderStore } from "@store/folder-store";
     import { ViewDefinition, standardDefinition } from "@store/list-view-definition";
-    import ListHeader from "@sections/list/ListHeader.vue";
+    // import ListHeader from "@sections/list/ListHeader.vue";
     import GridHeader from "@sections/list/grid/GridHeader.vue";
     import GridBody from "@sections/list/grid/GridBody.vue";
     import { Field } from "@store/types";

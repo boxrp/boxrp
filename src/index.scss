@@ -33,6 +33,7 @@ body {
         white-space: nowrap;
         word-wrap: normal;
         direction: ltr;
+        font-feature-settings: 'liga';
         -webkit-font-feature-settings: 'liga';
         -webkit-font-smoothing: antialiased;
     }
@@ -51,7 +52,7 @@ body {
             'opsz' 24
     }
 
-    .button {
+    .button-flat {
         @apply uppercase font-medium tracking-widest text-sm text-white px-3 py-2 rounded-full flex items-center gap-1 cursor-pointer; 
         @apply bg-indigo-500;
         @apply hover:bg-indigo-600 disabled:opacity-50 disabled:hover:bg-indigo-500;
@@ -60,19 +61,19 @@ body {
             @apply icon;
         }
     }
-    .button-medium {
-        @extend .button;
+    .button-outlined {
+        @extend .button-flat;
         @apply bg-transparent border border-indigo-500 text-indigo-500 hover:bg-indigo-50;
     }
     .button-low {
-        @extend .button;
+        @extend .button-flat;
         @apply border-transparent bg-indigo-500 hover:bg-indigo-600;
     }
-    .text-button {
-        @extend .button;
-        @apply border-transparent text-slate-500 bg-transparent hover:bg-hover hover:text-slate-800;
+    .button-text {
+        @extend .button-flat;
+        @apply bg-transparent border-transparent text-slate-500  hover:bg-hover hover:text-slate-800;
     }
-    .icon-button {
+    .button-icon {
         @apply icon cursor-pointer p-1 rounded-md text-slate-500 hover:bg-hover hover:text-slate-800;
     }
     .caption {

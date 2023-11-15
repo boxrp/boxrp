@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx,vue}"],
+    safelist: ['button-flat', 'button-outlined', 'button-text', 'button-icon'],
     theme: {
         extend: {
             colors: {
@@ -20,7 +21,7 @@ export default {
                     '900': '#1d298b',
                     '950': '#161c55',
                 },
-                
+
             }
         },
     },

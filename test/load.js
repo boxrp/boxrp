@@ -7,7 +7,9 @@ const uid = "q8JJV5WzR4rNdJxjGuqFVhHDWTpU";
 const spaces = [
     { label: "CRM", icon: "face", order: 2 },
     { label: "Jobs", order: 1 },
-    { label: "Accounting", order: 3 },
+    { label: "Accounting", icon: "account_balance", order: 3 },
+    { label: "CMS", icon: "cloud_upload", order: 4 },
+    { label: "Stock", icon: "inventory_2", order: 5 },
 ]
 
 // Folders
@@ -23,8 +25,8 @@ for (const space of spaces) {
 const crm = spaces[0];
 const lists = ["Leads", "Deals", "Contacts", "Accounts"];
 for (const list of lists) {
-    const lref = collection(db, 'spaces', crm.id, 'lists');
-    let ref = await addDoc(lref, { label: list, uid: uid, org: uid });
+    const lref = collection(db, 'lists');
+    let ref = await addDoc(lref, { label: list, uid: uid, org: uid, space: crm.id });
     console.log("List", ref.id)
 }
 
@@ -50,7 +52,7 @@ const list = {
     ],
 };
 
-const lref = collection(db, 'spaces', jobs.id, 'lists');
+const lref = collection(db, 'lists');
 let ref = await addDoc(lref, list);
 console.log("List", ref.id)
 const iref = collection(ref, 'list-items');
