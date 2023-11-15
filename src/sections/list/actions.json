@@ -1,16 +1,14 @@
 {
     "title": [
         { "id": "share", "icon": "share", "label": "Share" },
+        { "id": "export", "icon": "exit_to_app", "label": "Export" },
         { "id": "customise", "icon": "settings", "label": "Customise" }
     ],
     "actions": [
-        { "id": "share", "type": "icon", "icon": "share", "tooltip": "Share" },
         { "id": "promote", "type": "icon", "icon": "upgrade", "tooltip": "Move Up" },
         { "id": "demote", "type": "icon", "icon": "upgrade", "flip": true, "tooltip": "Move Down" },
         { "id": "delete", "type": "icon", "icon": "delete", "tooltip": "Delete" },
 
-        { "id": "list", "type": "outlined", "icon": "add", "label": "List" },
-        { "id": "folder", "type": "outlined", "icon": "add", "label": "Folder" },
-        { "id": "dashboard", "type": "outlined", "icon": "add", "label": "Dashboard" }
+        { "id": "list", "type": "outlined", "icon": "add", "label": "Add Job" }
     ]
 }

@@ -1,32 +1,29 @@
 <template>
     <LeftRight>
         <template #left>
-            <TabBar :tabs="definition.tabs" active="grid" @click="tabClick" />
+            <TabBar :tabs="definition.tabs" :active="active" @click="changeView" />
         </template>
         <template #right>
-            <!-- <div class="flex gap-1">
-                <Button v-for="{ id, label, icon, flip } in actions.actions" :id="id" :icon="icon" :flip="flip" :type="label ? 'outlined' : 'icon'">{{ label || icon }}</Button>
-            </div> -->
+            SEARCH
         </template>
     </LeftRight>
 </template>
 
 <script setup lang="ts">
     import { computed } from "vue";
-    import { useRoute } from "vue-router";
-    import { useListStore } from "@store/list-store";
-
-    import actions from "./actions.json";
+    import { useRouter, useRoute } from "vue-router";
     import LeftRight from "@view/LeftRight.vue";
     import TabBar from "@components/TabBar.vue";
 
-
     import { standardDefinition as definition } from "@store/list-view-definition";
 
-    function tabClick(id: string) {
-        console.log(id);
-    }
+    const route = useRoute();
+    const router = useRouter();
+    const active = computed(() => route.params.tab as string || "grid");
 
+    function changeView(id: string) {
+        const path = `/list/${router.currentRoute.value.params.id}/${id}`;
+        router.push(path);
+    }
 </script>
 
-<style scoped lang="scss"></style>
