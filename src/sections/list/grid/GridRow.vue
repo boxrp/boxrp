@@ -1,6 +1,6 @@
 <template>
-    <span class="contents grid-row" :class="{'selected': selected.has(item.id), 'grid-row-child': child}">
-        <nav @click="toggle(item.id)">{{ selected.has(item.id) ? 'check_box' : 'check_box_outline_blank' }}</nav>
+    <span class="contents grid-row" :class="{'selected': selected, 'grid-row-child': child}">
+        <nav @click="$emit('select', item.id)">{{ index + 1 }}</nav>
         <GridField :field="field" :item="item" v-for="field in fields" />
     </span>
 </template>
@@ -10,46 +10,46 @@
     import { ListItem } from "@store/types";
     import GridField from "./GridField.jsx";
 
-    const props = defineProps<{
+    defineProps<{
         fields: SchemaField[] | undefined;
         item: ListItem;
-        selected: Set<string>;
-        child?: boolean;    
+        index: number;   
+        selected: boolean;
+        child?: boolean; 
     }>();
 
-    function toggle(id: string) {
-        if (props.selected.has(id)) {
-            props.selected.delete(id);
-        } 
-        else {
-            props.selected.add(id);
-        }
-    }
+    defineEmits(["select"]); 
 
 </script>
 
 <style lang="scss">
-    .grid-row:hover > * {
-        @apply bg-slate-50;
-    }
-    .grid-row > * {
-        @apply border-b p-2 flex items-center;
-    }
-    .grid-row > nav {
-        @apply icon icon-filled flex justify-center text-2xl text-slate-400 icon cursor-pointer pl-3;
-    }
-    .grid-row-child .icon {
-        @apply text-lg ml-1;
-    }
-    .selected {
-        &:hover > * {
-            @apply bg-blue-50;
+    .grid-row {
+        @apply text-sm;
+
+        & > * {
+            @apply border-b border-r p-2 flex items-center bg-transparent;
+
+            &:last-child {
+                @apply border-r-0;
+            }
         }
+        & > nav {
+            @apply bg-yellow-50 text-slate-400 text-xs font-medium flex justify-center cursor-pointer;
+ 
+            &:hover {
+                @apply bg-slate-50;
+            }
+        }
+    }
+    // .grid-row > *:nth-child(3) {
+    //     @apply bg-red-50;
+    // }
+    .selected {
         & > * {
             @apply bg-blue-50;
         }
         & > nav {
-            @apply text-indigo-500;
+            @apply bg-blue-50;
         }
     }
 </style>

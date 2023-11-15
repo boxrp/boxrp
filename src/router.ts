@@ -7,7 +7,6 @@ import Space from "@sections/space/Space.vue";
 
 import List from "@sections/list/List.vue";
 
-import Folders from "@sections/settings/folders/Folders.vue";
 
 const routes = [
     { path: "/", name: "auth", component: Auth },
@@ -23,9 +22,9 @@ const routes = [
         { path: ":id/:tab", name: "list", component: List }
     ]},
 
-    { path: "/settings", component: Layout, children: [
-        { path: "folders", name: "folders", component: Folders },
-    ]},
+    // { path: "/settings", component: Layout, children: [
+    //     { path: "folders", name: "folders", component: Folders },
+    // ]},
 
 
 ]
