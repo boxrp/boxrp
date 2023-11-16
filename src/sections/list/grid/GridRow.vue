@@ -2,6 +2,8 @@
     <span class="contents grid-row" :class="{'selected': selected, 'grid-row-child': child}">
         <nav @click="$emit('select', item.id)">{{ index + 1 }}</nav>
         <GridField :field="field" :item="item" v-for="field in fields" />
+        <div class="border-dashed"></div>
+        <div class="border-0"></div>
     </span>
 </template>
 
@@ -41,9 +43,7 @@
             }
         }
     }
-    // .grid-row > *:nth-child(3) {
-    //     @apply bg-red-50;
-    // }
+
     .selected {
         & > * {
             @apply bg-blue-50;

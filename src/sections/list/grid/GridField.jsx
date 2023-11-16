@@ -11,7 +11,8 @@ export default defineComponent({
     render() {
         const { id, type } = this.field;
         const value = this.item[id];
-        const option = this.field.option(value);
+        //const option = this.field.option(value);
+        const option = {color: "blue", value: "value"};
         switch (type) {
             case "name":
                 return <div className="font-medium">{value}</div>;
