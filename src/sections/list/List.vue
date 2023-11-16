@@ -1,7 +1,7 @@
 <template>
     <HeaderScroller>
         <template #header>
-            <Title :title="store.list?.label" :icon="store.list?.icon" :actions="actions.title" />
+            <Title :title="store.list?.label" :icon="store.list?.icon" :actions="actions.title" @action="titleAction" />
             <TabSearch />
             <FilterAction />
         </template>
@@ -30,6 +30,7 @@
     import Board from "./board/Board.vue";
     import Calendar from "./calendar/Calendar.vue";
     import Timeline from "./timeline/Timeline.vue";
+    import Customise from "./customise/Customise.vue";
 
     const store = useListStore();
     const route = useRoute();
@@ -42,14 +43,17 @@
                 return Calendar;
             case "timeline":
                 return Timeline;
+            case "customise":
+                return Customise;
             default:
                 return Grid;
         }
     });
 
-    function tabClick(id: string) {
+    function titleAction(id: string) {
         console.log(id);
     }
+
 
 </script>
 
