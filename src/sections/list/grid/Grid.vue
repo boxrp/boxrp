@@ -1,20 +1,7 @@
 <template>
     <div class="h-full overflow-scroll">
-        <div class="grid " :style="{ 'grid-template-columns': widths }">
-            <header class="grid-header contents caption text-sm cursor-default font-medium text-slate-800">
-                <div class="border-r bg-yellow-50"></div>
-                <div v-for="(field, i) in store.list?.fields" class="flex bg-yellow-50">
-                    <mark v-if="i !== 0" class="resize-left"></mark>
-                    <span>{{ field.label }}</span>
-                    <!-- <div class="icon text-sm flex items-center text-slate-400 w-3">arrow_downward</div> -->
-                    <mark class="resize-right"></mark>
-                </div>
-                <div class="flex items-center justify-center border-r bg-yellow-50 hover:bg-hover">
-                    <mark class="resize-left"></mark>
-                    <div class="icon text-indigo-500 mt-0.5">add</div>
-                </div>
-                <div></div>
-            </header>
+        <div class="grid" :style="{ 'grid-template-columns': widths }">
+            <GridHeader :fields="store.list?.fields" />
 
             <template v-for="(item, i) in store.items">
                 <GridRow :fields="store.schema?.fields" :item="item" :selected="selected.has(item.id)" :index="i" @select="select" />
@@ -36,13 +23,14 @@
 <script setup lang="ts">
     import { ref, computed } from "vue";
     import { useListStore } from "@store/list-store";
+    import GridHeader from "./GridHeader.vue";
     import GridRow from "./GridRow.vue";
     // import { width } from "./widths";
 
     const store = useListStore();
 
 
-    const widths = computed(() => "32px " + "128px ".repeat(store.list?.fields.length || 0) + "32px 1fr");
+    const widths = computed(() => "32px " + "128px ".repeat(store.list?.fields.length || 0) + "40px 1fr");
 
     const selected = ref(new Set<string>());
 
@@ -61,33 +49,7 @@
 
 
 <style scoped lang="scss">
-    .grid-header {
 
-        & > div {
-            // The cell
-            @apply border-b text-xs sticky top-0;
-
-            // &:hover {
-            //     @apply bg-slate-50;
-            // }
-            // The text label
-            & > span {
-                @apply flex-1 whitespace-nowrap overflow-hidden overflow-ellipsis mx-1 px-1 py-2;
-            }
-
-        }
-
-        .resize-left, .resize-right {
-            @apply bg-transparent w-1 absolute cursor-col-resize;
-        }
-        .resize-left {
-            @apply top-0 bottom-0 left-0;
-        }
-        .resize-right {
-            @apply top-0 bottom-0 right-0 border-r;
-        }
-
-    }
     .grid-footer {
         & > * {
             @apply border-b border-r;
