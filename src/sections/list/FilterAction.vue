@@ -2,11 +2,12 @@
     <LeftRight class="h-14">
         <template #left>
             <div class="flex gap-2">
-                <Dropdown label="Group" icon="sort" :value="''" :options="{}" />
+                <Dropdown label="Group" icon="segment" :value="''" :options="{}" />
                 <Dropdown label="Filter" icon="filter_list" value="" :options="{}" />
+                <Dropdown label="Sort" icon="sort" value="" :options="{}" />
                 <Dropdown label="Assigned" icon="person" value="" :options="{}" />
                 <Dropdown label="Closed" icon="check_circle" value="" :options="{}" />
-            </div>            
+            </div>
         </template>
         <template #right>
             <div class="flex gap-1">
@@ -22,4 +23,3 @@
     import Dropdown from "@components/Dropdown.vue";
     import Button from "@components/Button.vue";
 </script>
-

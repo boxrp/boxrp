@@ -7,7 +7,7 @@
         </template>
         <template #scroller>
             <component :is="view" />
-        </template>            
+        </template>
     </HeaderScroller>
 </template>
 
@@ -23,14 +23,12 @@
     import TabSearch from "./TabSearch.vue";
     import FilterAction from "./FilterAction.vue";
 
-
     import { standardDefinition as definition } from "@store/list-view-definition";
 
     import Grid from "./grid/Grid.vue";
     import Board from "./board/Board.vue";
     import Calendar from "./calendar/Calendar.vue";
     import Timeline from "./timeline/Timeline.vue";
-    import Customise from "./customise/Customise.vue";
 
     const store = useListStore();
     const route = useRoute();
@@ -43,8 +41,6 @@
                 return Calendar;
             case "timeline":
                 return Timeline;
-            case "customise":
-                return Customise;
             default:
                 return Grid;
         }
@@ -53,8 +49,6 @@
     function titleAction(id: string) {
         console.log(id);
     }
-
-
 </script>
 
 <style scoped lang="scss"></style>

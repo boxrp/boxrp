@@ -1,5 +1,5 @@
 <template>
-    <div class="icon-button" :class="{'rotate-180': flip}">
+    <div class="icon-button" :class="{ 'rotate-180': flip }">
         <slot />
     </div>
 </template>
@@ -10,7 +10,4 @@
         tooltip?: string;
         flip?: boolean;
     }>();
-   
 </script>
-
-

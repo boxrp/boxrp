@@ -9,4 +9,4 @@ interface ActionButton {
     tooltip?: string;
 }
 
-export { type ActionButton }
+export { type ActionButton };

@@ -9,7 +9,6 @@ const foldersRef = collection(db, "folders");
 const listsRef = collection(db, "lists");
 
 export const useFolderStore = defineStore("folder", () => {
-
     const $folders = ref<Folder[]>([]);
     const $edit = ref({
         selected: "",

@@ -28,13 +28,13 @@
     import Icons from "@components/icons";
 
     const store = useSpaceStore();
-    const tabs = [{id: "dashboard", icon: Icons.dashboard}, {id: "lists", icon: Icons.list}];
+    const tabs = [
+        { id: "dashboard", icon: Icons.dashboard },
+        { id: "lists", icon: Icons.list },
+    ];
     const active = ref("dashboard");
 
     function tabClick(id: string) {
         active.value = id;
     }
-
-
 </script>
-

@@ -10,11 +10,10 @@
 </template>
 
 <script setup lang="ts">
-
     export interface Tab {
         id: string;
         icon: string;
-    }    
+    }
 
     defineProps<{
         tabs: Tab[] | undefined;
@@ -22,7 +21,4 @@
     }>();
 
     defineEmits(["click"]);
-
-
 </script>
-

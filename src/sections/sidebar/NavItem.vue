@@ -21,5 +21,4 @@
     }>();
 
     const emit = defineEmits(["click", "action"]);
-
 </script>

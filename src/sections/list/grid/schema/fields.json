@@ -1,0 +1,49 @@
+{
+    "special fields": [
+        { "id": "id", "name": "Identifier", "icon": "beenhere", "desc": "An identifier for each row such as company name. While not compulsory it makes sense to usually have an identifier" },
+        { "id": "status", "name": "Status", "icon": "verified", "config": "options", "desc": "Track a row through configurable steps or stages such as todo, doing, done" },
+        { "id": "assigned", "name": "Assigned", "icon": "person", "config": "user", "desc": "Assign the row to a person in your orginisation" },
+        { "id": "start", "name": "Start Date", "icon": "today", "config": "date", "desc": "The date/time an activity started" },
+        { "id": "due", "name": "Due Date", "icon": "event", "config": "date", "desc": "The date/time an activity is due" },
+        { "id": "complete", "name": "Complete Date", "icon": "event_available", "config": "date", "desc": "The date/time an activity completed" }
+    ],
+    "data input": [
+        { "id": "text", "name": "Descriptive text", "icon": "horizontal_rule", "desc": "A generic line of text" },
+        { "id": "multi", "name": "Long text", "icon": "menu", "desc": "Multiple lines of text" },
+        { "id": "number", "name": "Number", "icon": "123", "config": "number", "desc": "A generic numeric value" },
+        { "id": "currency", "name": "Currency", "icon": "attach_money", "config": "currency", "desc": "Monetary values" },
+        { "id": "date", "name": "Date", "icon": "calendar_today", "config": "date", "desc": "A generic date/time" },
+
+        { "id": "check", "name": "Check", "icon": "check_box", "desc": "Check or uncheck to indicate status" },
+        { "id": "select", "name": "Single select", "icon": "playlist_add_check", "desc": "Pick one value" },
+        { "id": "label", "name": "Labels", "icon": "checklist_rtl", "desc": "Tag a row with multiple values" },
+        { "id": "user", "name": "Person", "icon": "person", "desc": "One or more people in your organisation" },
+
+        { "id": "address", "name": "Address", "icon": "location_on", "desc": "A valid address" },
+        { "id": "phone", "name": "Phone number", "icon": "call", "desc": "A valid telephone number" },
+        { "id": "email", "name": "Email", "icon": "mail", "desc": "A valid email address" },
+        { "id": "url", "name": "Link", "icon": "link", "desc": "A link to a web site or page" },
+
+        { "id": "priority", "name": "Priority", "icon": "personal_places", "desc": "An indicator of a rows priority" },
+        { "id": "rateing", "name": "Rating", "icon": "star", "desc": "An indicater of a rows rating" }
+    ],
+    "calculated": [
+        { "id": "percent", "name": "Percent", "icon": "percent", "desc": "A percentage calculated from another field" },
+        { "id": "duration", "name": "Duration", "icon": "timelapse", "desc": "" },
+        { "id": "created", "name": "Created", "icon": "more_time", "desc": "Automatic timestamp when the row was created" },
+        { "id": "modified", "name": "Last modified", "icon": "history", "desc": "Automatic timestamp when the row was last modified" },
+        { "id": "created-by", "name": "Created by", "icon": "person_add", "desc": "Automatic stamp of who created the row" },
+        { "id": "modified-by", "name": "Last modified by", "icon": "person_search", "desc": "Automatic stamp of Who last modified the row" },
+        { "id": "auto", "name": "Autonumber", "icon": "exposure_plus_1", "desc": "Automatically generate a unique number" },
+        { "id": "formula", "name": "Formula", "icon": "function", "desc": "Calculate a value based on other fields" },
+        { "id": "rollup", "name": "Rollup", "icon": "keyboard_double_arrow_up", "desc": "" },
+        { "id": "count", "name": "Count", "icon": "functions", "desc": "" },
+        { "id": "lookup", "name": "Lookup", "icon": "manage_search", "desc": "" }
+    ],
+    "misc": [
+        { "id": "link", "name": "Link to another record", "icon": "join", "desc": "" },
+        { "id": "attachment", "name": "Attachment", "icon": "attachment", "desc": "Attach files to a row" },
+        { "id": "qr", "name": "QR code", "icon": "qr_code", "desc": "Generate a QR code of another field" },
+        { "id": "button", "name": "Button", "icon": "crop_16_9", "desc": "Perform an action on the row" }
+    ]
+}

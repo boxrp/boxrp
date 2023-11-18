@@ -9,7 +9,6 @@ import { useRoute } from "vue-router";
 const spacesRef = collection(db, "spaces");
 
 export const useSpaceStore = defineStore("space", () => {
-
     const $spaces = ref<Space[]>([]);
     const $space = ref<Space | undefined>(undefined);
 

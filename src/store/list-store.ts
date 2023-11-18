@@ -71,6 +71,5 @@ export const useListStore = defineStore("list", () => {
         { immediate: true }
     );
 
-
     return { fetchList, fetchListItems, list: $list, items: $items, setGroup, group: $group, grouped: $grouped, schema: $schema };
 });

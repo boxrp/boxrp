@@ -9,7 +9,6 @@
             </ul>
         </li>
     </ul>
-
 </template>
 
 <script setup lang="ts">
@@ -28,15 +27,13 @@
     function spaceClick(id: string) {
         open.value.add(id);
         emit("spaceclick", id);
-    }    
+    }
 
     function expand(id: string) {
         if (open.value.has(id)) {
             open.value.delete(id);
-        } 
-        else {
+        } else {
             open.value.add(id);
         }
-    }    
-
+    }
 </script>

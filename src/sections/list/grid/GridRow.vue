@@ -1,6 +1,6 @@
 <template>
-    <span class="contents grid-row" :class="{'selected': selected, 'grid-row-child': child}">
-        <nav @click="$emit('select', item.id)">{{ index + 1 }}</nav>
+    <span class="contents grid-row" :class="{ 'selected': selected, 'grid-row-child': child }">
+        <nav @click="$emit('select', item.id, $event.metaKey)">{{ index + 1 }}</nav>
         <GridField :field="field" :item="item" v-for="field in fields" />
         <div class="border-dashed"></div>
         <div class="border-0"></div>
@@ -15,13 +15,13 @@
     defineProps<{
         fields: SchemaField[] | undefined;
         item: ListItem;
-        index: number;   
+        index: number;
         selected: boolean;
-        child?: boolean; 
+        selectedCols: Set<string>;
+        child?: boolean;
     }>();
 
-    defineEmits(["select"]); 
-
+    defineEmits(["select"]);
 </script>
 
 <style lang="scss">
@@ -37,7 +37,7 @@
         }
         & > nav {
             @apply bg-yellow-50 text-slate-400 text-xs font-medium flex justify-center cursor-pointer;
- 
+
             &:hover {
                 @apply bg-slate-50;
             }

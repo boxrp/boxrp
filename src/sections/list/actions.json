@@ -8,10 +8,8 @@
         { "id": "wrap", "type": "icon", "icon": "wrap_text", "tooltip": "Add" },
         { "id": "add", "type": "icon", "icon": "playlist_add", "tooltip": "Add" },
 
-
         { "id": "promote", "type": "icon", "icon": "upgrade", "tooltip": "Move Up" },
         { "id": "demote", "type": "icon", "icon": "upgrade", "flip": true, "tooltip": "Move Down" },
         { "id": "delete", "type": "icon", "icon": "delete", "tooltip": "Delete" }
-
     ]
 }

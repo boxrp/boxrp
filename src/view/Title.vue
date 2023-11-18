@@ -8,15 +8,15 @@
         </slot>
         <slot name="actions">
             <div class="flex-1 flex gap-1 items-center justify-end">
-                <Button v-for="{id, label, icon} in actions" :id="id" type="text" :icon="icon" @click="$emit('action', id)">{{ label }}</Button>
+                <Button v-for="{ id, label, icon } in actions" :id="id" type="text" :icon="icon" @click="$emit('action', id)">{{ label }}</Button>
             </div>
         </slot>
     </section>
 </template>
 
 <script setup lang="ts">
-    import { ActionButton } from './view-types';
-    import Button from '@components/Button.vue';
+    import { ActionButton } from "./view-types";
+    import Button from "@components/Button.vue";
 
     defineProps<{
         title?: string;
@@ -24,6 +24,5 @@
         actions?: ActionButton[];
     }>();
 
-    defineEmits(["action"]); 
-
+    defineEmits(["action"]);
 </script>

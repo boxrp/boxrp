@@ -3,9 +3,7 @@
         <template #left>
             <TabBar :tabs="definition.tabs" :active="active" @click="changeView" />
         </template>
-        <template #right>
-            SEARCH
-        </template>
+        <template #right> SEARCH </template>
     </LeftRight>
 </template>
 
@@ -19,11 +17,10 @@
 
     const route = useRoute();
     const router = useRouter();
-    const active = computed(() => route.params.tab as string || "grid");
+    const active = computed(() => (route.params.tab as string) || "grid");
 
     function changeView(id: string) {
         const path = `/list/${router.currentRoute.value.params.id}/${id}`;
         router.push(path);
     }
 </script>
-

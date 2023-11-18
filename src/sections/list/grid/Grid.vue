@@ -1,10 +1,10 @@
 <template>
     <div class="h-full overflow-scroll">
         <div class="grid" :style="{ 'grid-template-columns': widths }">
-            <GridHeader :fields="store.list?.fields" />
+            <GridHeader :fields="store.list?.fields" :selected-cols="selectedCols" @select="selectCol" />
 
             <template v-for="(item, i) in store.items">
-                <GridRow :fields="store.schema?.fields" :item="item" :selected="selected.has(item.id)" :index="i" @select="select" />
+                <GridRow :fields="store.schema?.fields" :item="item" :selected="selectedRows.has(item.id)" :selected-cols="selectedCols" :index="i" @select="selectRow" />
                 <!-- <GridRow v-for="child in item.children" :fields="schema?.fields" :item="child" :selected="selected" :child="true" /> -->
             </template>
 
@@ -25,31 +25,40 @@
     import { useListStore } from "@store/list-store";
     import GridHeader from "./GridHeader.vue";
     import GridRow from "./GridRow.vue";
-    // import { width } from "./widths";
 
     const store = useListStore();
 
-
     const widths = computed(() => "32px " + "128px ".repeat(store.list?.fields.length || 0) + "40px 1fr");
 
-    const selected = ref(new Set<string>());
+    const selectedRows = ref(new Set<string>());
+    const selectedCols = ref(new Set<string>());
 
-    function select(id: string) {
-        selected.value.clear();
-        selected.value.add(id);
-        // if (selected.value.has(id)) {
-        //     selected.value.delete(id);
-        // } 
-        // else {
-        //     selected.value.add(id);
-        // }
-    }    
+    function selectRow(id: string, metaKey: boolean) {
+        selectedCols.value.clear();
+        toggle(id, metaKey, selectedRows.value);
+    }
 
+    function selectCol(id: string, metaKey: boolean) {
+        selectedRows.value.clear();
+        toggle(id, metaKey, selectedCols.value);
+    }
+
+    function toggle(id: string, metaKey: boolean, set: Set<string>) {
+        if (metaKey) {
+            // Ctrl/Cmd
+            if (set.has(id)) {
+                set.delete(id);
+            } else {
+                set.add(id);
+            }
+        } else {
+            set.clear();
+            set.add(id);
+        }
+    }
 </script>
 
-
 <style scoped lang="scss">
-
     .grid-footer {
         & > * {
             @apply border-b border-r;
@@ -61,5 +70,4 @@
             @apply border-0;
         }
     }
-
 </style>

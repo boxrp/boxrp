@@ -12,7 +12,7 @@ export default defineComponent({
         const { id, type } = this.field;
         const value = this.item[id];
         //const option = this.field.option(value);
-        const option = {color: "blue", value: "value"};
+        const option = { color: "blue", value: "value" };
         switch (type) {
             case "name":
                 return <div className="font-medium">{value}</div>;
@@ -30,7 +30,11 @@ export default defineComponent({
             case "accounts":
                 return <Avatar name={value} />;
             case "icon":
-                return <div><div className="icon">{value}</div></div>;
+                return (
+                    <div>
+                        <div className="icon">{value}</div>
+                    </div>
+                );
             default:
                 return <div>{value}</div>;
         }
