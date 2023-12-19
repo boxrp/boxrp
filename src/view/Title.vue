@@ -7,7 +7,7 @@
             </div>
         </slot>
         <slot name="actions">
-            <div class="flex-1 flex gap-1 items-center justify-end">
+            <div class="flex-1 flex items-center justify-end">
                 <Button v-for="{ id, label, icon } in actions" :id="id" type="text" :icon="icon" @click="$emit('action', id)">{{ label }}</Button>
             </div>
         </slot>

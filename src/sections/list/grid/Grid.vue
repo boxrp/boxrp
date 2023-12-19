@@ -9,7 +9,7 @@
             </template>
 
             <footer class="grid-footer contents border-b caption text-sm cursor-default">
-                <nav class="bg-yellow-50 flex items-center justify-center py-1 hover:bg-hover">
+                <nav class="bg-boxrp-50 flex items-center justify-center py-1 hover:bg-hover">
                     <div class="icon text-indigo-500">add</div>
                 </nav>
                 <div v-for="_ in store.list?.fields"></div>
@@ -17,16 +17,20 @@
                 <div></div>
             </footer>
         </div>
+        <SchemaDialog :open="uiStore.schemaDialog" />
     </div>
 </template>
 
 <script setup lang="ts">
     import { ref, computed } from "vue";
     import { useListStore } from "@store/list-store";
+    import { useListUiStore } from "@store/list-ui-store";
     import GridHeader from "./GridHeader.vue";
     import GridRow from "./GridRow.vue";
+    import SchemaDialog from "./schema/SchemaDialog.vue";
 
     const store = useListStore();
+    const uiStore = useListUiStore();
 
     const widths = computed(() => "32px " + "128px ".repeat(store.list?.fields.length || 0) + "40px 1fr");
 

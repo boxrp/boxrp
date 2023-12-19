@@ -1,15 +1,6 @@
 {
     "title": [
         { "id": "share", "icon": "share", "label": "Share" },
-        { "id": "export", "icon": "exit_to_app", "label": "Export" },
-        { "id": "customise", "icon": "settings", "label": "Customise" }
-    ],
-    "actions": [
-        { "id": "wrap", "type": "icon", "icon": "wrap_text", "tooltip": "Add" },
-        { "id": "add", "type": "icon", "icon": "playlist_add", "tooltip": "Add" },
-
-        { "id": "promote", "type": "icon", "icon": "upgrade", "tooltip": "Move Up" },
-        { "id": "demote", "type": "icon", "icon": "upgrade", "flip": true, "tooltip": "Move Down" },
-        { "id": "delete", "type": "icon", "icon": "delete", "tooltip": "Delete" }
+        { "id": "export", "icon": "exit_to_app", "label": "Export" }
     ]
 }

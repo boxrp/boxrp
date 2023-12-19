@@ -9,8 +9,8 @@
         { "id": "demote", "type": "icon", "icon": "upgrade", "flip": true, "tooltip": "Move Down" },
         { "id": "delete", "type": "icon", "icon": "delete", "tooltip": "Delete" },
 
-        { "id": "list", "type": "outlined", "icon": "add", "label": "List" },
-        { "id": "folder", "type": "outlined", "icon": "add", "label": "Folder" },
-        { "id": "dashboard", "type": "outlined", "icon": "add", "label": "Dashboard" }
+        { "id": "list", "type": "icon", "icon": "playlist_add", "tooltip": "Add List" },
+        { "id": "folder", "type": "icon", "icon": "create_new_folder", "tooltip": "Add Folder" },
+        { "id": "dashboard", "type": "icon", "icon": "dashboard_customize", "tooltip": "Add Dashboard" }
     ]
 }

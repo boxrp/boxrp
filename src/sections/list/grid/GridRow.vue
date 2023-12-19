@@ -36,10 +36,10 @@
             }
         }
         & > nav {
-            @apply bg-yellow-50 text-slate-400 text-xs font-medium flex justify-center cursor-pointer;
+            @apply bg-boxrp-1 text-slate-400 text-xs font-medium flex justify-center cursor-pointer;
 
             &:hover {
-                @apply bg-slate-50;
+                @apply bg-boxrp-2;
             }
         }
     }

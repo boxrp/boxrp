@@ -1,5 +1,5 @@
 <template>
-    <nav class="w-64 bg-[#f7f8f9] flex flex-col border-r">
+    <nav class="w-64 bg-borp-1 flex flex-col border-r">
         <header class="h-16 flex items-center px-3 border-b bg-white">
             <Logo size="small" />
             <div class="flex justify-end w-full">

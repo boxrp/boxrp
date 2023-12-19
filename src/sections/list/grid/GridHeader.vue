@@ -1,7 +1,7 @@
 <template>
     <header class="grid-header contents cursor-default font-medium text-slate-800 fixed">
         <div></div>
-        <div v-for="(field, i) in fields" class="group hover:bg-slate-50" :class="{ 'bg-blue-50': selectedCols.has(field.id) }" @click="$emit('select', field.id, $event.metaKey)">
+        <div v-for="(field, i) in fields" class="group hover:bg-boxrp-2" :class="{ 'bg-blue-50': selectedCols.has(field.id) }" @click="$emit('select', field.id, $event.metaKey)">
             <mark v-if="i !== 0"></mark>
             <span class="caption text-xs">{{ field.label }}</span>
             <div class="icon text-lg items-center text-slate-400 w-3 mr-2 hidden hover:text-indigo-700 group-hover:flex">arrow_downward</div>
@@ -29,7 +29,7 @@
     .grid-header {
         & > div {
             // The cell
-            @apply border-b border-r sticky top-0 select-none bg-yellow-50 flex py-1;
+            @apply border-b border-r sticky top-0 select-none bg-boxrp-1 flex py-1;
             // The text label
             & > span {
                 @apply flex-1 whitespace-nowrap overflow-hidden overflow-ellipsis mx-1 px-1 py-2;

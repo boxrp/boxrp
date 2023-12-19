@@ -1,5 +1,5 @@
 <template>
-    <div class="text-slate-700 flex flex-col gap-1.5 p-2 text-sm">
+    <div class="text-slate-700 flex flex-col gap-1.5 py-2 text-sm">
         <div class="flex gap-1.5 items-center">
             <input type="checkbox" id="date-config-durations" v-model="durations" class="rounded-sm border border-gray-400 focus:ring-0">
             <label for="date-config-durations">Express close dates as durations</label>
